@@ -513,17 +513,26 @@
       .hero-proof { gap: 14px; }
       .pain { padding: 80px 24px; }
       .guide-body {
-        grid-template-columns: 1fr;
-        padding: 0 16px 60px;
-        overflow-x: hidden;
+        display: flex; flex-direction: column;
+        padding: 0 20px 60px;
+        box-sizing: border-box;
+        max-width: 100%;
+      }
+      .guide-left {
+        position: static; flex: none;
+        width: 100%; max-width: 100%;
+        overflow: visible; padding: 0;
         box-sizing: border-box;
       }
-      .guide-left { position: static; flex: none; width: 100%; overflow: hidden; padding: 0; }
       .guide-right {
         position: static; order: -1;
         width: 100%; max-width: 100%;
         padding: 20px 0 0;
         box-sizing: border-box;
+      }
+      .guide-quote {
+        word-break: break-all;
+        overflow-wrap: break-word;
       }
 
       /* Video rounded on mobile */
@@ -534,7 +543,7 @@
       .accord-list {
         display: flex; overflow-x: auto; gap: 8px;
         border-top: none; scrollbar-width: none;
-        padding: 4px 56px 12px 0; margin: 12px 0 0;
+        padding: 4px 20px 12px 0; margin: 12px 0 0;
       }
       .accord-list::-webkit-scrollbar { display: none; }
       .accord-item { border-bottom: none; flex-shrink: 0; }
@@ -580,15 +589,9 @@
 
   <!-- NAV -->
   <nav id="topNav">
-    <a class="nav-logo" href="homepage.html">
+    <div class="nav-logo">
       <div class="v-badge">V+</div>
       得勝者文教
-    </a>
-    <div class="nav-links">
-      <a href="chen.html" class="active">陳建州老師</a>
-      <a href="xie.html">解創智老師</a>
-      <a href="apex.html">APEX</a>
-      <a href="trial.html">試聽活動</a>
     </div>
     <a class="nav-cta" href="trial.html#signup">立即報名試聽</a>
   </nav>
