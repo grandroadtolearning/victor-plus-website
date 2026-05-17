@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>解創智老師｜得勝者文教 國三升高一數學</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&family=Fraunces:wght@600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #7B2252;
+      --brand-dark: #4A1133;
+      --brand-light: #f3e8f0;
+      --gold: #C9A84C;
+      --gold-dim: rgba(201,168,76,.6);
+      --ink: #1a1a1a;
+      --ink-2: #444;
+      --ink-3: #888;
+      --bg: #ffffff;
+      --bg-muted: #F6F5F2;
+      --r: 14px;
+      --r-lg: 24px;
+      --shadow: 0 8px 32px rgba(123,34,82,.12);
+      --shadow-lg: 0 16px 56px rgba(123,34,82,.18);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(15,5,9,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: padding .3s, border-color .3s;
+    }
+    nav.scrolled { padding: 12px 48px; border-bottom-color: rgba(255,255,255,.12); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 900; font-size: 15px; color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo .v-badge {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 900; font-size: 13px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      color: rgba(255,255,255,.55); font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta {
+      background: var(--brand); color: #fff; font-weight: 700; font-size: 13px;
+      padding: 9px 20px; border-radius: 100px; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero-wrap {
+      background:
+        radial-gradient(ellipse 55% 60% at 85% 25%, rgba(123,34,82,.65) 0%, transparent 60%),
+        radial-gradient(ellipse 45% 50% at 15% 75%, rgba(74,17,51,.5) 0%, transparent 55%),
+        radial-gradient(ellipse 35% 30% at 40% 5%, rgba(201,168,76,.2) 0%, transparent 50%),
+        #0f0509;
+      padding-top: 88px;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      align-items: center;
+      gap: 48px;
+      padding-left: 80px;
+      padding-right: 80px;
+      padding-bottom: 60px;
+    }
+
+    /* Photo on LEFT for 解老師 — feels different from 建州 */
+    .hero-photo-col {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-photo-frame {
+      width: 100%; max-width: 400px;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--brand-light);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .hero-photo-frame img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+    .hero-photo-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      background:
+        repeating-linear-gradient(45deg, transparent 0 16px, rgba(123,34,82,.06) 16px 17px),
+        var(--brand-light);
+    }
+    .hero-photo-placeholder .ph-circle {
+      width: 100px; height: 100px; border-radius: 50%;
+      background: #fff; display: grid; place-items: center; font-size: 40px;
+      box-shadow: var(--shadow);
+    }
+    .hero-photo-placeholder .ph-label {
+      font-size: 12px; color: var(--ink-3); font-weight: 700;
+      background: #fff; padding: 5px 12px; border-radius: 8px;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .hero-float {
+      position: absolute; bottom: -16px; right: -24px;
+      background: #fff; border-radius: 16px;
+      padding: 14px 18px; box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(0,0,0,.06);
+      display: flex; flex-direction: column; gap: 4px;
+      min-width: 160px;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    .hero-float .f-label { font-size: 11px; color: var(--ink-3); }
+    .hero-float .f-val { font-size: 14px; font-weight: 900; color: var(--brand); }
+
+    /* Text col */
+    .hero-text { display: flex; flex-direction: column; gap: 24px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.65); font-size: 12px; font-weight: 700;
+      padding: 6px 16px; border-radius: 100px; letter-spacing: .04em;
+      border: 1px solid rgba(255,255,255,.12); width: fit-content;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+    .hero-badge {
+      display: inline-block; background: var(--gold);
+      color: #3a2600; font-size: 12px; font-weight: 900;
+      padding: 4px 14px; border-radius: 100px; letter-spacing: .04em;
+      width: fit-content;
+    }
+    .hero-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900; color: #fff;
+      line-height: 1.12; letter-spacing: -.02em;
+    }
+    .hero-headline .hl { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(15px, 1.5vw, 18px);
+      color: rgba(255,255,255,.6); line-height: 1.8;
+    }
+    .hero-sub strong { color: #fff; font-weight: 700; }
+
+    .hero-proof {
+      display: flex; align-items: center; gap: 20px;
+      padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-proof-stat { display: flex; flex-direction: column; gap: 2px; }
+    .hero-proof-num {
+      font-family: 'Fraunces', serif;
+      font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -.02em;
+    }
+    .hero-proof-num .unit { font-size: 13px; color: rgba(255,255,255,.5); font-family: inherit; margin-left: 2px; }
+    .hero-proof-label { font-size: 11px; color: rgba(255,255,255,.4); }
+    .hero-proof-div { width: 1px; height: 32px; background: rgba(255,255,255,.12); }
+
+    .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-direct {
+      background: var(--brand); color: #fff; font-weight: 700; font-size: 15px;
+      padding: 15px 28px; border-radius: 100px; text-decoration: none;
+      box-shadow: 0 8px 24px rgba(123,34,82,.35);
+      transition: background .2s, transform .2s, box-shadow .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-direct:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(123,34,82,.45); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,.75); font-weight: 700; font-size: 15px;
+      padding: 15px 28px; border-radius: 100px; text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,.2);
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+
+    /* ── PAIN POINT ── */
+    .pain { background: #111; padding: 100px 60px; text-align: center; }
+    .pain-inner { max-width: 760px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--gold);
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 20px;
+    }
+    .section-label::before, .section-label::after { content: ''; width: 20px; height: 1px; background: var(--gold); opacity: .4; }
+    .pain-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 900; color: #fff; line-height: 1.3; margin-bottom: 28px;
+    }
+    .pain-body { font-size: 16px; color: rgba(255,255,255,.6); line-height: 1.9; margin-bottom: 16px; }
+    .pain-body strong { color: #fff; font-weight: 700; }
+    .pain-highlight {
+      display: inline-block; padding: 18px 24px;
+      background: rgba(255,255,255,.05);
+      border-left: 3px solid var(--brand);
+      border-radius: 0 var(--r) var(--r) 0;
+      font-size: 16px; color: rgba(255,255,255,.85); line-height: 1.7;
+      font-weight: 500; text-align: left; margin-top: 8px; width: 100%;
+    }
+
+    /* ── GUIDE ── */
+    .guide { background: #f8f4f6; border-top: 1px solid rgba(123,34,82,.1); }
+    .guide-header {
+      text-align: center; padding: 100px 24px 0;
+      max-width: 600px; margin: 0 auto;
+    }
+    .guide-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--brand); text-transform: uppercase; margin-bottom: 16px; }
+    .guide-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 900; color: var(--ink); line-height: 1.3; margin-bottom: 14px;
+    }
+    .guide-sub { font-size: 16px; color: var(--ink-2); line-height: 1.8; }
+
+    .guide-body {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 40px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; align-items: start;
+    }
+    .guide-left { padding: 48px 48px 40px 0; position: sticky; top: 80px; }
+    .teacher-name-lg { font-size: 28px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
+    .teacher-badge-lg {
+      display: inline-block; background: var(--gold);
+      color: #3a2600; font-size: 11px; font-weight: 900;
+      padding: 3px 12px; border-radius: 100px; letter-spacing: .04em; margin-bottom: 32px;
+    }
+
+    .accord-list { border-top: 1px solid rgba(0,0,0,.1); }
+    .accord-item { border-bottom: 1px solid rgba(0,0,0,.1); }
+    .accord-trigger {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between; padding: 18px 0;
+      background: none; border: none; cursor: pointer;
+      text-align: left; gap: 12px; font-family: inherit;
+    }
+    .accord-trigger:hover .accord-label { color: var(--brand); }
+    .accord-label { font-size: 16px; font-weight: 700; color: var(--ink); transition: color .2s; line-height: 1.3; }
+    .accord-icon {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #f0f0f0; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 400; color: var(--ink-2);
+      transition: background .2s, transform .3s, color .2s;
+    }
+    .accord-item.open .accord-icon { background: var(--brand); color: #fff; transform: rotate(45deg); }
+    .accord-body { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; }
+    .accord-item.open .accord-body { max-height: 240px; padding: 0 0 20px; }
+    .accord-body p { font-size: 14px; color: var(--ink-2); line-height: 1.9; }
+
+    .guide-footer { margin-top: 32px; }
+    .dates-label { font-size: 11px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+    .dates-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .date-pill { font-size: 12px; font-weight: 700; background: var(--brand-light); color: var(--brand); padding: 5px 12px; border-radius: 8px; }
+    .btn-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--brand); color: #fff; font-weight: 700; font-size: 15px;
+      padding: 14px 32px; border-radius: 100px; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    .guide-right { padding-top: 48px; position: sticky; top: 80px; }
+    a.guide-video {
+      display: block; position: relative; overflow: hidden;
+      text-decoration: none; border-radius: var(--r-lg);
+      aspect-ratio: 16 / 9; box-shadow: var(--shadow-lg);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    a.guide-video img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .25s ease; }
+    a.guide-video:hover { transform: translateY(-2px); box-shadow: 0 22px 64px rgba(123,34,82,.22); }
+    a.guide-video:hover img { filter: brightness(.88); }
+    .video-play {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;
+    }
+    .video-play::before {
+      content: ''; position: absolute; width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(0,0,0,.5); transition: transform .25s ease, background .25s ease;
+    }
+    a.guide-video:hover .video-play::before { background: var(--brand); transform: scale(1.08); }
+    .video-play svg { position: relative; z-index: 1; color: #fff; margin-left: 4px; }
+
+    .guide-quote {
+      margin-top: 20px; font-size: 14px; color: var(--ink-2); line-height: 1.85;
+      font-style: italic; border-left: 3px solid var(--brand); padding-left: 16px;
+    }
+    .guide-quote cite { display: block; font-style: normal; font-size: 12px; color: var(--ink-3); margin-top: 8px; font-weight: 700; }
+    .guide-mobile-desc { display: none; }
+
+    /* ── VALUES ── */
+    .values { background: var(--bg); padding: 100px 60px; }
+    .values-inner { max-width: 1100px; margin: 0 auto; }
+    .values-header { text-align: center; margin-bottom: 64px; }
+    .values-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 900; color: var(--ink); line-height: 1.3;
+    }
+    .values-sub { font-size: 16px; color: var(--ink-2); line-height: 1.75; margin-top: 14px; }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .value-card {
+      background: var(--brand-light); border-radius: var(--r-lg);
+      padding: 36px 28px; display: flex; flex-direction: column; gap: 16px;
+      border: 1.5px solid rgba(123,34,82,.1);
+      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out);
+      position: relative; overflow: hidden;
+    }
+    .value-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--brand); transform: scaleX(0); transform-origin: left;
+      transition: transform .4s var(--ease-out);
+    }
+    .value-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .value-card:hover::before { transform: scaleX(1); }
+    .value-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--brand); display: grid; place-items: center; }
+    .value-card h3 { font-size: 20px; font-weight: 900; color: var(--ink); line-height: 1.3; }
+    .value-card p { font-size: 14px; color: var(--ink-2); line-height: 1.85; flex: 1; }
+    .value-tag {
+      display: inline-flex; align-items: center;
+      background: #fff; border: 1.5px solid rgba(123,34,82,.2);
+      color: var(--brand); font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 100px; width: fit-content;
+    }
+
+    /* ── STAT CALLOUT ── */
+    .stat-callout {
+      background: var(--brand-dark);
+      padding: 80px 60px; text-align: center;
+    }
+    .stat-callout-inner { max-width: 720px; margin: 0 auto; }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(72px, 10vw, 112px);
+      font-weight: 900; color: var(--gold);
+      letter-spacing: -.04em; line-height: 1;
+      display: flex; align-items: baseline; justify-content: center; gap: 4px;
+    }
+    .stat-num .pct { font-size: .42em; color: var(--gold-dim); font-weight: 700; }
+    .stat-label-top { font-size: 15px; color: rgba(255,255,255,.55); margin-bottom: 16px; }
+    .stat-label-bottom { font-size: 15px; color: rgba(255,255,255,.55); margin-top: 16px; line-height: 1.7; }
+    .stat-label-bottom strong { color: #fff; font-weight: 700; }
+    .stat-divider { width: 40px; height: 2px; background: var(--gold); opacity: .4; margin: 24px auto; border-radius: 2px; }
+    .stat-punch {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 900; color: #fff; line-height: 1.5;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: #0f0509; text-align: center; padding: 120px 60px;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(123,34,82,.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-inner { max-width: 620px; margin: 0 auto; position: relative; z-index: 2; }
+    .cta-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 18px; display: inline-flex; align-items: center; gap: 10px; }
+    .cta-eyebrow::before, .cta-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--gold); opacity: .4; }
+    .cta-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 900; color: #fff; line-height: 1.25; margin-bottom: 20px;
+    }
+    .cta-headline .hl { color: var(--gold); }
+    .cta-divider { width: 40px; height: 3px; background: var(--brand); margin: 24px auto 32px; border-radius: 2px; }
+    .cta-body { font-size: 16px; color: rgba(255,255,255,.55); line-height: 1.85; margin-bottom: 40px; }
+    .cta-body strong { color: rgba(255,255,255,.85); font-weight: 700; }
+    .btn-cta-main {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--brand); color: #fff;
+      padding: 18px 40px; border-radius: 100px;
+      font-size: 17px; font-weight: 700; text-decoration: none;
+      transition: background .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 10px 40px rgba(123,34,82,.4);
+    }
+    .btn-cta-main:hover { background: var(--brand-dark); transform: translateY(-2px); box-shadow: 0 14px 48px rgba(123,34,82,.55); }
+    .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,.3); }
+    .cta-note-row { display: inline-flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+    .cta-note-row span::before { content: '✓ '; color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0509; color: rgba(255,255,255,.3);
+      padding: 32px 48px; text-align: center; font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer a { color: rgba(255,255,255,.45); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 980px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hero-wrap {
+        grid-template-columns: 1fr; padding: 110px 24px 60px;
+        min-height: auto; gap: 40px;
+      }
+      .hero-float { display: none; }
+      .hero-proof { gap: 14px; }
+      .pain { padding: 80px 24px; }
+      .guide-body { grid-template-columns: 1fr; padding: 0 20px 60px; }
+      .guide-left { position: static; padding: 28px 0 0; }
+      .guide-right { position: static; padding-top: 0; }
+
+      .accord-list {
+        display: flex; overflow-x: auto; gap: 8px;
+        border-top: none; scrollbar-width: none;
+        padding: 4px 0 12px;
+      }
+      .accord-list::-webkit-scrollbar { display: none; }
+      .accord-item { border-bottom: none; flex-shrink: 0; }
+      .accord-trigger {
+        flex-direction: row; background: #f0f0f0;
+        border-radius: 100px; padding: 9px 16px;
+        gap: 6px; width: auto; white-space: nowrap;
+      }
+      .accord-label { font-size: 13px; color: var(--ink-2); }
+      .accord-icon { width: 22px; height: 22px; font-size: 14px; background: rgba(0,0,0,.08); order: -1; }
+      .accord-item.open .accord-trigger { background: var(--brand); }
+      .accord-item.open .accord-label { color: #fff; }
+      .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
+      .accord-body { display: none !important; }
+      .guide-mobile-desc {
+        display: block; min-height: 60px;
+        font-size: 14px; color: var(--ink-2); line-height: 1.85;
+        padding: 14px 4px 8px; border-top: 1px solid rgba(0,0,0,.08); margin-top: 10px;
+      }
+
+      .values { padding: 80px 24px; }
+      .values-grid { grid-template-columns: 1fr; gap: 14px; }
+      .value-card { padding: 24px 20px; flex-direction: row; align-items: center; gap: 14px; flex-wrap: wrap; }
+      .value-card::before { display: none; }
+      .value-icon { flex-shrink: 0; }
+      .value-card h3 { font-size: 17px; }
+      .value-card p { width: 100%; }
+      .stat-callout { padding: 60px 24px; }
+      .cta-section { padding: 80px 24px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="topNav">
+    <a class="nav-logo" href="homepage.html">
+      <div class="v-badge">V+</div>
+      得勝者文教
+    </a>
+    <div class="nav-links">
+      <a href="chen.html">陳建州老師</a>
+      <a href="xie.html" class="active">解創智老師</a>
+      <a href="apex.html">APEX</a>
+      <a href="trial.html">試聽活動</a>
+    </div>
+    <a class="nav-cta" href="trial.html#signup">立即報名試聽</a>
+  </nav>
+
+  <!-- HERO — photo left, text right -->
+  <div class="hero-wrap">
+    <div class="hero-photo-col reveal">
+      <div class="hero-photo-frame">
+        <img src="teacher-jie.jpg" alt="解創智老師"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+        <div class="hero-photo-placeholder">
+          <div class="ph-circle">👨‍🏫</div>
+          <span class="ph-label">解創智老師照片</span>
+        </div>
+      </div>
+      <div class="hero-float">
+        <div class="f-label">試聽場次</div>
+        <div class="f-val">6/1・6/8・6/10・6/19</div>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <span class="hero-eyebrow reveal">
+        <span class="dot"></span>
+        得勝者文教・國三升高一數學
+      </span>
+
+      <div class="reveal">
+        <span class="hero-badge">30 年數學名師</span>
+      </div>
+
+      <h1 class="hero-headline reveal">
+        打掉重練，<br>從<span class="hl">地基</span>開始。
+      </h1>
+
+      <p class="hero-sub reveal">
+        你以前學的，可能只是記住了——而不是真的懂了。<br>
+        解老師會把你的觀念全部重建，<br>
+        <strong>用最基礎的概念，解最困難的題目。</strong>
+      </p>
+
+      <div class="hero-proof reveal">
+        <div class="hero-proof-stat">
+          <div class="hero-proof-num">30<span class="unit">年</span></div>
+          <div class="hero-proof-label">數學教學資歷</div>
+        </div>
+        <div class="hero-proof-div"></div>
+        <div class="hero-proof-stat">
+          <div class="hero-proof-num">4<span class="unit">場</span></div>
+          <div class="hero-proof-label">暑假試聽場次</div>
+        </div>
+        <div class="hero-proof-div"></div>
+        <div class="hero-proof-stat">
+          <div class="hero-proof-num">免費<span class="unit"></span></div>
+          <div class="hero-proof-label">試聽・無購買義務</div>
+        </div>
+      </div>
+
+      <div class="hero-cta-row reveal">
+        <a href="trial.html#signup" class="btn-direct">免費報名試聽</a>
+        <a href="#guide" class="btn-ghost">認識老師</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN POINT -->
+  <section class="pain">
+    <div class="pain-inner">
+      <div class="section-label reveal">很多學生有同樣的誤解</div>
+      <h2 class="pain-headline reveal">
+        你以為你懂了——<br>進了高中，才發現根本沒懂。
+      </h2>
+      <p class="pain-body reveal">
+        國中可以靠背公式過關。<br>
+        高中數學考的是<strong>你有沒有真正理解這個概念從哪裡來</strong>。<br>
+        地基沒打穩，蓋得越高，越容易倒。
+      </p>
+      <p class="pain-body reveal" style="margin-top: 8px;">
+        解老師說：「不是你不聰明，是你從來沒有機會把地基打穩。」<br>
+        30 年來，他做的事情只有一件：把學生的觀念<strong>全部打掉，重新建立</strong>。
+      </p>
+      <div class="pain-highlight reveal">
+        學生說：「解老師把我國中學的東西全部打掉重練。<br>
+        我才發現原來我根本不懂那些公式——懂了之後，最難的題目反而變簡單了。」
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section class="guide" id="guide">
+    <div class="guide-header reveal">
+      <p class="guide-eyebrow">認識你的嚮導</p>
+      <h2 class="guide-headline">看看解創智老師<br>怎麼帶出數A 15 級分的學生</h2>
+      <p class="guide-sub">從赫哲數學出發，深耕數學教育 30 年。<br>以「打底建構、超前學習」為核心，帶出無數醫牙電資頂大學生。</p>
+    </div>
+
+    <div class="guide-body">
+      <!-- Left -->
+      <div class="guide-left">
+        <div class="teacher-name-lg">解創智老師</div>
+        <div class="teacher-badge-lg">30 年數學名師</div>
+
+        <div class="accord-list">
+          <div class="accord-item open">
+            <button class="accord-trigger">
+              <span class="accord-label">打掉重練，從地基開始</span>
+              <span class="accord-icon">+</span>
+            </button>
+            <div class="accord-body">
+              <p>老師會帶你把過去學的觀念「全部打掉」，重新建立清晰、紮實的基礎。你會發現，你以前以為自己懂的東西，其實只是記住了——而不是真的懂了。</p>
+            </div>
+          </div>
+
+          <div class="accord-item">
+            <button class="accord-trigger">
+              <span class="accord-label">同一題，給你好幾條路</span>
+              <span class="accord-icon">+</span>
+            </button>
+            <div class="accord-body">
+              <p>面對同一個題目，解老師會提出多種解法，讓你選最快、最順手的那條路。高中數學不只有一種答法——這是很多補習班不教的事。</p>
+            </div>
+          </div>
+
+          <div class="accord-item">
+            <button class="accord-trigger">
+              <span class="accord-label">用最簡單的概念，破最難的題</span>
+              <span class="accord-icon">+</span>
+            </button>
+            <div class="accord-body">
+              <p>解老師會先用簡單題目反覆演練，讓你把基礎觀念練到像反射動作一樣熟。到最後，那些看起來超難的變化題，你會發現它的本質其實很基礎。</p>
+            </div>
+          </div>
+
+          <div class="accord-item">
+            <button class="accord-trigger">
+              <span class="accord-label">公式從哪來，為什麼這樣用</span>
+              <span class="accord-icon">+</span>
+            </button>
+            <div class="accord-body">
+              <p>他會告訴你每一個公式的推導過程，思考的邏輯清晰到你能跟著走、跟著理解。你不再是「背公式的人」，而是「知道公式為什麼成立的人」。</p>
+            </div>
+          </div>
+
+          <div class="accord-item">
+            <button class="accord-trigger">
+              <span class="accord-label">跟著節奏，學測自然有發揮</span>
+              <span class="accord-icon">+</span>
+            </button>
+            <div class="accord-body">
+              <p>30 年來都是這樣。只要跟著解老師穩紮穩打，每一個題目他都仔細講透——學生只需要跟上，不需要猜老師在想什麼。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide-mobile-desc"></div>
+
+        <div class="guide-footer">
+          <p class="dates-label">試聽場次</p>
+          <div class="dates-row">
+            <span class="date-pill">6/1 晚</span>
+            <span class="date-pill">6/8 晚</span>
+            <span class="date-pill">6/10 午</span>
+            <span class="date-pill">6/19 午</span>
+          </div>
+          <a href="trial.html#signup" class="btn-cta">免費報名試聽</a>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="guide-right">
+        <a class="guide-video"
+           href="https://www.youtube.com/watch?v=2MDNehWOWjc"
+           target="_blank" rel="noopener"
+           aria-label="觀看解創智老師介紹影片">
+          <img src="https://img.youtube.com/vi/2MDNehWOWjc/maxresdefault.jpg"
+               onerror="this.onerror=null;this.src='https://img.youtube.com/vi/2MDNehWOWjc/hqdefault.jpg';"
+               alt="解創智老師介紹影片縮圖" />
+          <span class="video-play" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+        </a>
+        <blockquote class="guide-quote">
+          「都是一步一步把你的地基打穩，再去教變化的題目——用最基礎的概念，解最困難的題目。」
+          <cite>— 成大醫科同學</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT CALLOUT -->
+  <section class="stat-callout">
+    <div class="stat-callout-inner reveal">
+      <p class="stat-label-top">跟著解老師的路線，目標是擠進這個數字</p>
+      <div class="stat-num">1.23<span class="pct">%</span></div>
+      <p class="stat-label-bottom">
+        115 年全台考生拿到數A 15 級分的比例<br>
+        <strong>想進台大醫學・電機・資工，就要在這裡。</strong>
+      </p>
+      <div class="stat-divider"></div>
+      <p class="stat-punch">
+        15 個月學完學測範圍。<br>當同學高三才開始，你已經領先整整一年。
+      </p>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="values-inner">
+      <div class="values-header reveal">
+        <div class="section-label" style="color:var(--brand);">跟解老師學數學，你會得到</div>
+        <h2 class="values-title">不只是補強，<br>是重新建立整套數學思維</h2>
+        <p class="values-sub">很多學生說：「上完解老師的課，才發現自己其實可以很厲害。」</p>
+      </div>
+
+      <div class="values-grid reveal">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg>
+          </div>
+          <h3>地基打穩，才能蓋高樓</h3>
+          <p>把國中沒真正學懂的觀念全部補回來。地基穩了，高中三年的數學才有辦法越蓋越高，不會在最關鍵的時候倒塌。</p>
+          <span class="value-tag">紮實根基</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+          </div>
+          <h3>15 個月完整備戰計畫</h3>
+          <p>不是補習，是系統性備考。從高一開始，三個階段走完整套學測數學範圍，讓孩子在正確的時間點做正確的事。</p>
+          <span class="value-tag">系統備戰</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+          </div>
+          <h3>開始真正喜歡數學</h3>
+          <p>這是很多家長沒預料到的結果。孩子不只成績進步——他們開始覺得數學有趣，開始主動去思考，而不是一碰到難題就放棄。</p>
+          <span class="value-tag">真實改變</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner reveal">
+      <div class="cta-eyebrow">下一步</div>
+      <h2 class="cta-headline">
+        親眼看看<br><span class="hl">解老師怎麼上課</span>。
+      </h2>
+      <div class="cta-divider"></div>
+      <p class="cta-body">
+        30 年的經驗，一堂課就能感受到。<br>
+        免費試聽，聽完自己決定。<br>
+        <strong>6/1、6/8、6/10、6/19，名額有限。</strong>
+      </p>
+      <a href="trial.html#signup" class="btn-cta-main">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        立即免費報名試聽
+      </a>
+      <div class="cta-note">
+        <div class="cta-note-row">
+          <span>完全免費</span>
+          <span>無任何購買義務</span>
+          <span>聽完再決定</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 VICTOR<sup>+</sup> 得勝者文教・國三升高一數學課程<br>
+    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('topNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    document.querySelectorAll('.accord-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.accord-item');
+        const isOpen = item.classList.contains('open');
+        const list = item.closest('.accord-list');
+        list.querySelectorAll('.accord-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) {
+          item.classList.add('open');
+          const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
+          if (mobileDesc) {
+            const bodyText = item.querySelector('.accord-body p');
+            mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+          }
+        } else {
+          const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
+          if (mobileDesc) mobileDesc.textContent = '';
+        }
+      });
+    });
+
+    document.querySelectorAll('.guide-left').forEach(left => {
+      const openItem = left.querySelector('.accord-item.open');
+      const mobileDesc = left.querySelector('.guide-mobile-desc');
+      if (openItem && mobileDesc) {
+        const bodyText = openItem.querySelector('.accord-body p');
+        mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+      }
+    });
+  </script>
+
+</body>
+</html>
