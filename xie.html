@@ -107,7 +107,7 @@
       aspect-ratio: 4 / 5;
       border-radius: var(--r-lg);
       overflow: hidden;
-      background: var(--brand-light);
+      background: #0f0509;
       box-shadow: var(--shadow-lg);
       position: relative;
     }
@@ -236,10 +236,25 @@
     }
 
     /* ── GUIDE ── */
-    .guide { background: #f8f4f6; border-top: 1px solid rgba(123,34,82,.1); }
+    .guide {
+      background: #f8f4f6;
+      border-top: 1px solid rgba(123,34,82,.12);
+      box-shadow: inset 0 8px 24px -16px rgba(123,34,82,.18);
+      position: relative;
+      overflow-x: hidden;
+    }
+    .guide::before {
+      content: '';
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 64px; height: 3px;
+      background: var(--brand);
+      border-radius: 0 0 4px 4px;
+    }
     .guide-header {
-      text-align: center; padding: 100px 24px 0;
-      max-width: 600px; margin: 0 auto;
+      text-align: center;
+      padding: 110px 24px 0;
+      max-width: 640px; margin: 0 auto;
     }
     .guide-eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .12em; color: var(--brand); text-transform: uppercase; margin-bottom: 16px; }
     .guide-headline {
@@ -247,15 +262,20 @@
       font-size: clamp(24px, 3.5vw, 38px);
       font-weight: 900; color: var(--ink); line-height: 1.3; margin-bottom: 14px;
     }
-    .guide-sub { font-size: 16px; color: var(--ink-2); line-height: 1.8; }
+    .guide-sub { font-size: 16px; color: var(--ink-2); line-height: 1.8; margin-bottom: 40px; }
 
     .guide-body {
+      display: flex;
       max-width: 1100px; margin: 0 auto;
       padding: 0 40px 80px;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 0; align-items: start;
+      gap: 0;
+      align-items: flex-start;
     }
-    .guide-left { padding: 48px 48px 40px 0; position: sticky; top: 80px; }
+    .guide-left {
+      flex: 0 0 42%;
+      padding: 48px 40px 40px 0;
+      position: sticky; top: 80px;
+    }
     .teacher-name-lg { font-size: 28px; font-weight: 900; color: var(--ink); margin-bottom: 4px; }
     .teacher-badge-lg {
       display: inline-block; background: var(--gold);
@@ -263,6 +283,13 @@
       padding: 3px 12px; border-radius: 100px; letter-spacing: .04em; margin-bottom: 32px;
     }
 
+    .accord-list-wrap { position: relative; }
+    .accord-list-wrap::after {
+      content: ''; position: absolute;
+      top: 0; right: 0; bottom: 0; width: 56px;
+      background: linear-gradient(to left, #f8f4f6 10%, transparent 100%);
+      pointer-events: none;
+    }
     .accord-list { border-top: 1px solid rgba(0,0,0,.1); }
     .accord-item { border-bottom: 1px solid rgba(0,0,0,.1); }
     .accord-trigger {
@@ -282,8 +309,10 @@
     }
     .accord-item.open .accord-icon { background: var(--brand); color: #fff; transform: rotate(45deg); }
     .accord-body { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; }
-    .accord-item.open .accord-body { max-height: 240px; padding: 0 0 20px; }
+    .accord-item.open .accord-body { max-height: 300px; padding: 0 16px 20px; }
     .accord-body p { font-size: 14px; color: var(--ink-2); line-height: 1.9; }
+
+    .guide-mobile-desc { display: none; }
 
     .guide-footer { margin-top: 32px; }
     .dates-label { font-size: 11px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
@@ -297,11 +326,12 @@
     }
     .btn-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
 
-    .guide-right { padding-top: 48px; position: sticky; top: 80px; }
+    .guide-right { flex: 0 0 58%; position: sticky; top: 80px; padding-top: 48px; }
     a.guide-video {
       display: block; position: relative; overflow: hidden;
       text-decoration: none; border-radius: var(--r-lg);
       aspect-ratio: 16 / 9; box-shadow: var(--shadow-lg);
+      background: #000;
       transition: transform .25s ease, box-shadow .25s ease;
     }
     a.guide-video img { width: 100%; height: 100%; object-fit: cover; display: block; transition: filter .25s ease; }
@@ -311,18 +341,17 @@
       position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none;
     }
     .video-play::before {
-      content: ''; position: absolute; width: 72px; height: 72px; border-radius: 50%;
-      background: rgba(0,0,0,.5); transition: transform .25s ease, background .25s ease;
+      content: ''; position: absolute; width: 76px; height: 76px; border-radius: 50%;
+      background: rgba(0,0,0,.55); transition: transform .25s ease, background .25s ease;
     }
     a.guide-video:hover .video-play::before { background: var(--brand); transform: scale(1.08); }
-    .video-play svg { position: relative; z-index: 1; color: #fff; margin-left: 4px; }
+    .video-play svg { position: relative; z-index: 1; color: #fff; margin-left: 4px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4)); }
 
     .guide-quote {
       margin-top: 20px; font-size: 14px; color: var(--ink-2); line-height: 1.85;
       font-style: italic; border-left: 3px solid var(--brand); padding-left: 16px;
     }
     .guide-quote cite { display: block; font-style: normal; font-size: 12px; color: var(--ink-3); margin-top: 8px; font-weight: 700; }
-    .guide-mobile-desc { display: none; }
 
     /* ── VALUES ── */
     .values { background: var(--bg); padding: 100px 60px; }
@@ -441,34 +470,6 @@
       .hero-float { display: none; }
       .hero-proof { gap: 14px; }
       .pain { padding: 80px 24px; }
-      .guide-body { grid-template-columns: 1fr; padding: 0 20px 60px; }
-      .guide-left { position: static; padding: 28px 0 0; }
-      .guide-right { position: static; padding-top: 0; }
-
-      .accord-list {
-        display: flex; overflow-x: auto; gap: 8px;
-        border-top: none; scrollbar-width: none;
-        padding: 4px 0 12px;
-      }
-      .accord-list::-webkit-scrollbar { display: none; }
-      .accord-item { border-bottom: none; flex-shrink: 0; }
-      .accord-trigger {
-        flex-direction: row; background: #f0f0f0;
-        border-radius: 100px; padding: 9px 16px;
-        gap: 6px; width: auto; white-space: nowrap;
-      }
-      .accord-label { font-size: 13px; color: var(--ink-2); }
-      .accord-icon { width: 22px; height: 22px; font-size: 14px; background: rgba(0,0,0,.08); order: -1; }
-      .accord-item.open .accord-trigger { background: var(--brand); }
-      .accord-item.open .accord-label { color: #fff; }
-      .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
-      .accord-body { display: none !important; }
-      .guide-mobile-desc {
-        display: block; min-height: 60px;
-        font-size: 14px; color: var(--ink-2); line-height: 1.85;
-        padding: 14px 4px 8px; border-top: 1px solid rgba(0,0,0,.08); margin-top: 10px;
-      }
-
       .values { padding: 80px 24px; }
       .values-grid { grid-template-columns: 1fr; gap: 14px; }
       .value-card { padding: 24px 20px; flex-direction: row; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -479,6 +480,58 @@
       .stat-callout { padding: 60px 24px; }
       .cta-section { padding: 80px 24px; }
       footer { padding: 28px 20px; }
+    }
+
+    /* ── GUIDE RESPONSIVE (760px — matches trial page) ── */
+    @media (max-width: 760px) {
+      .guide-body {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 16px 60px;
+      }
+      .guide-right {
+        order: -1; position: static;
+        flex: none; width: 100%;
+        padding: 20px 0 0;
+      }
+      a.guide-video { border-radius: 12px; overflow: hidden; }
+      .guide-quote { display: none; }
+      .guide-left { position: static; flex: none; width: 100%; padding: 0; }
+      .teacher-name-lg { font-size: 22px; text-align: center; padding-top: 20px; }
+      .teacher-badge-lg { display: block; width: fit-content; margin: 0 auto 16px; }
+      .accord-list-wrap::after { display: none; }
+      .accord-list {
+        display: flex; overflow-x: auto; gap: 8px;
+        border-top: none; scrollbar-width: none;
+        padding: 4px 56px 12px 0; margin: 12px 0 0;
+      }
+      .accord-list::-webkit-scrollbar { display: none; }
+      .accord-item { border-bottom: none; flex-shrink: 0; }
+      .accord-trigger {
+        flex-direction: row; background: #f0f0f0;
+        border-radius: 100px; padding: 9px 16px;
+        gap: 7px; width: auto; white-space: nowrap;
+      }
+      .accord-label { font-size: 13px; font-weight: 700; color: var(--ink-2); }
+      .accord-icon { width: 22px; height: 22px; font-size: 14px; background: rgba(0,0,0,.08); order: -1; }
+      .accord-item.open .accord-trigger { background: var(--brand); }
+      .accord-item.open .accord-label { color: #fff; }
+      .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
+      .accord-body { display: none !important; }
+      .guide-mobile-desc {
+        display: block;
+        background: #fff; border-radius: 16px;
+        padding: 16px 20px; margin: 12px 0 0;
+        box-shadow: 0 4px 20px rgba(123,34,82,.08);
+        min-height: 72px; font-size: 14px; color: var(--ink-2); line-height: 1.8;
+      }
+      .guide-mobile-desc strong {
+        display: block; font-size: 11px; font-weight: 700;
+        color: var(--brand); margin-bottom: 6px;
+        letter-spacing: .06em; text-transform: uppercase;
+      }
+      .guide-footer { padding-top: 8px; text-align: center; }
+      .dates-row { justify-content: center; }
     }
   </style>
 </head>
@@ -503,9 +556,8 @@
   <div class="hero-wrap">
     <div class="hero-photo-col reveal">
       <div class="hero-photo-frame">
-        <img src="teacher-jie.png" alt="解創智老師"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-        <div class="hero-photo-placeholder">
+        <img src="https://raw.githubusercontent.com/grandroadtolearning/victor-plus-website/main/Facebook%20%E8%B2%BC%E6%96%87%20-%20Mastering%20Math%20A%20for%20NTU%20(3).png" alt="解創智老師" />
+        <div class="hero-photo-placeholder" style="display:none;">
           <div class="ph-circle">👨‍🏫</div>
           <span class="ph-label">解創智老師照片</span>
         </div>
@@ -593,6 +645,7 @@
         <div class="teacher-name-lg">解創智老師</div>
         <div class="teacher-badge-lg">30 年數學名師</div>
 
+        <div class="accord-list-wrap">
         <div class="accord-list">
           <div class="accord-item open">
             <button class="accord-trigger">
@@ -644,6 +697,7 @@
             </div>
           </div>
         </div>
+        </div><!-- /.accord-list-wrap -->
 
         <div class="guide-mobile-desc"></div>
 
@@ -673,8 +727,8 @@
           </span>
         </a>
         <blockquote class="guide-quote">
-          「都是一步一步把你的地基打穩，再去教變化的題目——用最基礎的概念，解最困難的題目。」
-          <cite>— 成大醫科同學</cite>
+          「不管學生用什麼角度切入，老師都能立刻抓住思路、給出清晰的答案——同一題，還會再多給幾種解法，讓學生找到最快、最順手的那條路。」
+          <cite>— 台大醫科同學</cite>
         </blockquote>
       </div>
     </div>
@@ -733,12 +787,15 @@
           item.classList.add('open');
           const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
           if (mobileDesc) {
+            const label = item.querySelector('.accord-label');
             const bodyText = item.querySelector('.accord-body p');
-            mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+            mobileDesc.innerHTML =
+              (label ? '<strong>' + label.textContent + '</strong>' : '') +
+              (bodyText ? bodyText.textContent : '');
           }
         } else {
           const mobileDesc = item.closest('.guide-left').querySelector('.guide-mobile-desc');
-          if (mobileDesc) mobileDesc.textContent = '';
+          if (mobileDesc) mobileDesc.innerHTML = '';
         }
       });
     });
@@ -747,8 +804,11 @@
       const openItem = left.querySelector('.accord-item.open');
       const mobileDesc = left.querySelector('.guide-mobile-desc');
       if (openItem && mobileDesc) {
+        const label = openItem.querySelector('.accord-label');
         const bodyText = openItem.querySelector('.accord-body p');
-        mobileDesc.textContent = bodyText ? bodyText.textContent : '';
+        mobileDesc.innerHTML =
+          (label ? '<strong>' + label.textContent + '</strong>' : '') +
+          (bodyText ? bodyText.textContent : '');
       }
     });
   </script>
