@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&family=Fraunces:wght@600;700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --brand: #7B2252;
       --brand-dark: #4A1133;
@@ -27,7 +26,6 @@
       --shadow-lg: 0 16px 56px rgba(123,34,82,.18);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Noto Sans TC', sans-serif;
@@ -39,11 +37,9 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
-
     /* ── REVEAL ── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); }
     .reveal.in { opacity: 1; transform: none; }
-
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -80,7 +76,6 @@
       transition: background .2s, transform .2s;
     }
     .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
-
     /* ── HERO ── */
     .hero-wrap {
       background:
@@ -114,14 +109,12 @@
       animation: pulse 2.4s ease-in-out infinite;
     }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
-
     .hero-badge {
       display: inline-block; background: var(--gold);
       color: #3a2600; font-size: 12px; font-weight: 900;
       padding: 4px 14px; border-radius: 100px; letter-spacing: .04em;
       width: fit-content;
     }
-
     .hero-headline {
       font-family: 'Noto Serif TC', serif;
       font-size: clamp(36px, 5vw, 64px);
@@ -131,13 +124,11 @@
     .hero-headline .hl {
       color: var(--gold);
     }
-
     .hero-sub {
       font-size: clamp(15px, 1.5vw, 18px);
       color: rgba(255,255,255,.6); line-height: 1.8;
     }
     .hero-sub strong { color: #fff; font-weight: 700; }
-
     .hero-proof {
       display: flex; align-items: center; gap: 20px;
       padding-top: 20px; border-top: 1px solid rgba(255,255,255,.1);
@@ -150,7 +141,6 @@
     .hero-proof-num .unit { font-size: 13px; color: rgba(255,255,255,.5); font-family: inherit; margin-left: 2px; }
     .hero-proof-label { font-size: 11px; color: rgba(255,255,255,.4); }
     .hero-proof-div { width: 1px; height: 32px; background: rgba(255,255,255,.12); }
-
     .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-direct {
       background: var(--brand); color: #fff; font-weight: 700; font-size: 15px;
@@ -167,7 +157,6 @@
       transition: border-color .2s, color .2s;
     }
     .btn-ghost:hover { border-color: rgba(255,255,255,.5); color: #fff; }
-
     /* Hero photo */
     .hero-photo-col {
       position: relative;
@@ -189,7 +178,7 @@
     }
     .hero-photo-placeholder {
       position: absolute; inset: 0;
-      display: flex; flex-direction: column;
+      display: none; flex-direction: column;
       align-items: center; justify-content: center; gap: 14px;
       background:
         repeating-linear-gradient(45deg, transparent 0 16px, rgba(123,34,82,.06) 16px 17px),
@@ -205,7 +194,6 @@
       background: #fff; padding: 5px 12px; border-radius: 8px;
       border: 1px solid rgba(0,0,0,.08);
     }
-
     /* Floating card on photo */
     .hero-float {
       position: absolute; bottom: -16px; left: -24px;
@@ -219,7 +207,6 @@
     @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
     .hero-float .f-label { font-size: 11px; color: var(--ink-3); }
     .hero-float .f-val { font-size: 14px; font-weight: 900; color: var(--brand); }
-
     /* ── PAIN POINT ── */
     .pain {
       background: #111;
@@ -257,7 +244,6 @@
       font-weight: 500; text-align: left; margin-top: 8px;
       width: 100%;
     }
-
     /* ── GUIDE SECTION ── */
     .guide {
       background: #f8f4f6;
@@ -281,7 +267,6 @@
     .guide-sub {
       font-size: 16px; color: var(--ink-2); line-height: 1.8;
     }
-
     .guide-body {
       max-width: 1100px; margin: 0 auto;
       padding: 0 40px 80px;
@@ -290,7 +275,6 @@
       gap: 0;
       align-items: start;
     }
-
     /* Left: accordion */
     .guide-left {
       padding: 48px 48px 40px 0;
@@ -305,7 +289,6 @@
       padding: 3px 12px; border-radius: 100px; letter-spacing: .04em;
       margin-bottom: 32px;
     }
-
     .accord-list-wrap { position: relative; }
     .accord-list-wrap::after {
       content: ''; position: absolute;
@@ -334,7 +317,6 @@
     .accord-body { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; padding: 0; }
     .accord-item.open .accord-body { max-height: 240px; padding: 0 0 20px; }
     .accord-body p { font-size: 14px; color: var(--ink-2); line-height: 1.9; }
-
     .guide-footer { margin-top: 32px; }
     .dates-label { font-size: 11px; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
     .dates-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
@@ -350,7 +332,6 @@
       transition: background .2s, transform .2s;
     }
     .btn-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
-
     /* Right: photo + quote */
     .guide-right {
       padding-top: 48px;
@@ -395,7 +376,6 @@
     }
     a.guide-video:hover .video-play::before { background: var(--brand); transform: scale(1.08); }
     .video-play svg { position: relative; z-index: 1; color: #fff; margin-left: 4px; }
-
     .guide-quote {
       margin-top: 20px;
       font-size: 14px; color: var(--ink-2); line-height: 1.85;
@@ -403,10 +383,8 @@
       border-left: 3px solid var(--brand); padding-left: 16px;
     }
     .guide-quote cite { display: block; font-style: normal; font-size: 12px; color: var(--ink-3); margin-top: 8px; font-weight: 700; }
-
     /* Mobile desc */
     .guide-mobile-desc { display: none; }
-
     /* ── VALUES ── */
     .values { background: var(--bg); padding: 100px 60px; }
     .values-inner { max-width: 1100px; margin: 0 auto; }
@@ -417,7 +395,6 @@
       font-weight: 900; color: var(--ink); line-height: 1.3;
     }
     .values-sub { font-size: 16px; color: var(--ink-2); line-height: 1.75; margin-top: 14px; }
-
     .values-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
@@ -450,7 +427,6 @@
       color: var(--brand); font-size: 12px; font-weight: 700;
       padding: 4px 14px; border-radius: 100px; width: fit-content;
     }
-
     /* ── CTA SECTION ── */
     .cta-section {
       background: #0f0509;
@@ -489,7 +465,6 @@
     .cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,.3); }
     .cta-note-row { display: inline-flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
     .cta-note-row span::before { content: '✓ '; color: var(--gold); }
-
     /* ── FOOTER ── */
     footer {
       background: #0f0509; color: rgba(255,255,255,.3);
@@ -498,7 +473,6 @@
     }
     footer a { color: rgba(255,255,255,.45); text-decoration: none; }
     footer a:hover { color: #fff; }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 980px) {
       nav { padding: 14px 20px; }
@@ -534,10 +508,8 @@
         word-break: break-all;
         overflow-wrap: break-word;
       }
-
       /* Video rounded on mobile */
       .guide-video { border-radius: 12px; overflow: hidden; }
-
       /* Mobile accordion → horizontal pill chips */
       .accord-list-wrap::after { display: none; }
       .accord-list {
@@ -558,7 +530,6 @@
       .accord-item.open .accord-label { color: #fff; }
       .accord-item.open .accord-icon { background: rgba(255,255,255,.25); color: #fff; transform: rotate(45deg); }
       .accord-body { display: none !important; }
-
       /* Description card below chips */
       .guide-mobile-desc {
         display: block;
@@ -572,7 +543,6 @@
         color: var(--brand); margin-bottom: 6px;
         letter-spacing: .06em; text-transform: uppercase;
       }
-
       .values { padding: 80px 24px; }
       .values-grid { grid-template-columns: 1fr; gap: 14px; }
       .value-card { padding: 24px 20px; flex-direction: row; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -586,7 +556,6 @@
   </style>
 </head>
 <body>
-
   <!-- NAV -->
   <nav id="topNav">
     <a class="nav-logo" href="homepage.html">
@@ -601,7 +570,6 @@
     </div>
     <a class="nav-cta" href="trial.html#signup">立即報名試聽</a>
   </nav>
-
   <!-- HERO -->
   <div class="hero-wrap">
     <div class="hero-text">
@@ -609,31 +577,25 @@
         <span class="dot"></span>
         得勝者文教・國三升高一數學
       </span>
-
       <div class="reveal">
         <span class="hero-badge">數學鬼才</span>
       </div>
-
       <h1 class="hero-headline reveal">
         先<span class="hl">懂</span>，<br>再開始算。
       </h1>
-
       <p class="hero-sub reveal">
         不讓你在搞懂之前就開始計算。<br>
         每一個公式，他都推導給你看——<br>
         <strong>讓你真正理解，而不是死背。</strong>
       </p>
-
-
       <div class="hero-cta-row reveal">
         <a href="trial.html#signup" class="btn-direct">免費報名試聽</a>
         <a href="#guide" class="btn-ghost">認識老師</a>
       </div>
     </div>
-
     <div class="hero-photo-col reveal">
       <div class="hero-photo-frame">
-        <img src="teacher-chen-3.jpg" alt="陳建州老師"
+        <img src="chen.jpg" alt="陳建州老師"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="hero-photo-placeholder">
           <div class="ph-circle">👨‍🏫</div>
@@ -646,7 +608,6 @@
       </div>
     </div>
   </div>
-
   <!-- PAIN POINT -->
   <section class="pain">
     <div class="pain-inner">
@@ -664,7 +625,6 @@
       </div>
     </div>
   </section>
-
   <!-- GUIDE / PROFILE -->
   <section class="guide" id="guide">
     <div class="guide-header reveal">
@@ -672,13 +632,11 @@
       <h2 class="guide-headline">看看陳建州老師<br>怎麼改變學生看數學的方式</h2>
       <p class="guide-sub">先懂公式從哪來，再開始算。<br>讓每個學生都能靈活應對陌生題型。</p>
     </div>
-
     <div class="guide-body">
       <!-- Left -->
       <div class="guide-left">
         <div class="teacher-name-lg">陳建州老師</div>
         <div class="teacher-badge-lg">數學鬼才</div>
-
         <div class="accord-list-wrap">
         <div class="accord-list">
           <div class="accord-item open">
@@ -690,7 +648,6 @@
               <p>他不讓你在搞懂之前就開始算。每一個公式，他都會推導給你看——讓你在有足夠認知的狀態下才進入計算。結果是：公式不用死背，遇到陌生題型你也知道從哪裡切入。</p>
             </div>
           </div>
-
           <div class="accord-item">
             <button class="accord-trigger">
               <span class="accord-label">同一題，給你四、五種解法</span>
@@ -700,7 +657,6 @@
               <p>他把整個題目的脈絡講得非常清楚，然後拆出四、五種不同解法。你會開始發現，數學題不只有一條路——這件事會直接改變你看題目的方式。</p>
             </div>
           </div>
-
           <div class="accord-item">
             <button class="accord-trigger">
               <span class="accord-label">基礎和進階都顧到</span>
@@ -710,7 +666,6 @@
               <p>他對基礎和進階都掌握得很好。給優秀的同學進階公式和更深的推導，給幾何或集合比較弱的同學用圖形快速建立直覺。不是每個人都要走同一條路。</p>
             </div>
           </div>
-
           <div class="accord-item">
             <button class="accord-trigger">
               <span class="accord-label">把不同章節連在一起</span>
@@ -722,9 +677,7 @@
           </div>
         </div>
         </div><!-- /.accord-list-wrap -->
-
         <div class="guide-mobile-desc"></div>
-
         <div class="guide-footer">
           <p class="dates-label">試聽場次</p>
           <div class="dates-row">
@@ -735,7 +688,6 @@
           <a href="trial.html#signup" class="btn-cta">免費報名試聽</a>
         </div>
       </div>
-
       <!-- Right -->
       <div class="guide-right">
         <a class="guide-video"
@@ -756,7 +708,6 @@
       </div>
     </div>
   </section>
-
   <!-- VALUES -->
   <section class="values">
     <div class="values-inner">
@@ -767,7 +718,6 @@
         <h2 class="values-title">不只是成績，<br>是真正的數學能力</h2>
         <p class="values-sub">很多學生上完課後說：以前以為自己不是讀數學的料。後來才發現，是方法問題。</p>
       </div>
-
       <div class="values-grid reveal">
         <div class="value-card">
           <div class="value-icon">
@@ -777,7 +727,6 @@
           <p>每個公式都從推導開始學起。考場遇到沒見過的題型，你也知道從哪裡切入，不會腦袋空白。</p>
           <span class="value-tag">理解 > 記憶</span>
         </div>
-
         <div class="value-card">
           <div class="value-icon">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
@@ -786,7 +735,6 @@
           <p>同一道題的多種解法、跨章節的觀念連結——讓你看見數學不是一堆零散的公式，而是有邏輯的系統。</p>
           <span class="value-tag">系統性思維</span>
         </div>
-
         <div class="value-card">
           <div class="value-icon">
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
@@ -798,7 +746,6 @@
       </div>
     </div>
   </section>
-
   <!-- CTA -->
   <section class="cta-section">
     <div class="cta-inner reveal">
@@ -825,25 +772,21 @@
       </div>
     </div>
   </section>
-
   <footer>
     © 2026 VICTOR<sup>+</sup> 得勝者文教・國三升高一數學課程<br>
     <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
   </footer>
-
   <script>
     // Nav scroll
     const nav = document.getElementById('topNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
-
     // Scroll reveal
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
     // Accordion
     document.querySelectorAll('.accord-trigger').forEach(trigger => {
       trigger.addEventListener('click', () => {
@@ -867,7 +810,6 @@
         }
       });
     });
-
     // Init mobile desc with first open item
     document.querySelectorAll('.guide-left').forEach(left => {
       const openItem = left.querySelector('.accord-item.open');
@@ -881,6 +823,5 @@
       }
     });
   </script>
-
 </body>
 </html>
