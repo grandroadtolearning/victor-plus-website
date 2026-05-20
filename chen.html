@@ -189,7 +189,7 @@
     }
     .hero-photo-placeholder {
       position: absolute; inset: 0;
-      display: none; flex-direction: column;
+      display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 14px;
       background:
         repeating-linear-gradient(45deg, transparent 0 16px, rgba(123,34,82,.06) 16px 17px),
@@ -589,9 +589,15 @@
 
   <!-- NAV -->
   <nav id="topNav">
-    <div class="nav-logo">
+    <a class="nav-logo" href="homepage.html">
       <div class="v-badge">V+</div>
       得勝者文教
+    </a>
+    <div class="nav-links">
+      <a href="chen.html" class="active">陳建州老師</a>
+      <a href="xie.html">解創智老師</a>
+      <a href="apex.html">APEX</a>
+      <a href="trial.html">試聽活動</a>
     </div>
     <a class="nav-cta" href="trial.html#signup">立即報名試聽</a>
   </nav>
@@ -627,7 +633,7 @@
 
     <div class="hero-photo-col reveal">
       <div class="hero-photo-frame">
-        <img src="chen.jpg" alt="陳建州老師"
+        <img src="teacher-chen-3.jpg" alt="陳建州老師"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
         <div class="hero-photo-placeholder">
           <div class="ph-circle">👨‍🏫</div>
