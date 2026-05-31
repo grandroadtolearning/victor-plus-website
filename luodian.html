@@ -185,8 +185,21 @@
     .spk { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     .spkcard {
       background: #000; border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--r-lg); padding: 40px 36px;
+      border-radius: var(--r-lg); overflow: hidden;
     }
+    .spk-photo {
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(123,34,82,.55) 0%, transparent 70%),
+        #0a0205;
+      display: flex; align-items: flex-end; justify-content: center;
+      height: 280px; overflow: hidden;
+    }
+    .spk-photo img {
+      height: 280px; width: auto; max-width: 100%;
+      object-fit: contain; object-position: bottom center;
+      display: block;
+    }
+    .spk-body { padding: 28px 32px 36px; }
     .spkcard .nm { font-family:'Noto Serif TC',serif; font-size: 34px; font-weight: 900; color: #fff; }
     .spkcard .badge {
       display: inline-block; background: var(--gold); color: #3a2600;
@@ -263,6 +276,8 @@
       .hero-wrap { padding: 100px 20px 60px; }
       section { padding: 64px 20px; }
       .qgrid, .spk { grid-template-columns: 1fr; }
+      .spk-photo { height: 220px; }
+      .spk-photo img { height: 220px; }
       .edge-card { padding: 40px 26px; }
       form { padding: 30px 24px; }
       footer { padding: 28px 20px; }
@@ -350,16 +365,26 @@
       <h2 class="sec-title">前附中老師，<span class="hl">親自上台</span>。</h2>
       <div class="spk">
         <div class="spkcard">
-          <div class="nm serif">金刀</div>
-          <span class="badge">前附中老師・師鐸獎得主</span>
-          <div class="role">師大附中科學班・逾 26 年・教育部教師最高榮譽</div>
-          <p>師大附中科學班老師，任教逾 26 年。<br>帶過數十屆資優生的選考歷程，<br>最懂「這個分數，該往哪裡放」。<br>他一句話，往往就幫家長省下好幾天的猶豫。</p>
+          <div class="spk-photo">
+            <img src="teacher-jindao.png" alt="金刀老師" />
+          </div>
+          <div class="spk-body">
+            <div class="nm serif">金刀</div>
+            <span class="badge">前附中老師・師鐸獎得主</span>
+            <div class="role">師大附中科學班・逾 26 年・教育部教師最高榮譽</div>
+            <p>師大附中科學班老師，任教逾 26 年。<br>帶過數十屆資優生的選考歷程，<br>最懂「這個分數，該往哪裡放」。<br>他一句話，往往就幫家長省下好幾天的猶豫。</p>
+          </div>
         </div>
         <div class="spkcard">
-          <div class="nm serif">陸怡中</div>
-          <span class="badge">前附中老師</span>
-          <div class="role">南一・翰林・龍騰等多家出版社 物理參考書作者</div>
-          <p>多年在附中觀察各高中升學生態，<br>出版物理參考書由南一、翰林、龍騰等多家指標出版社發行。<br>最擅長用生活化的方式，<br>讓家長從更高的角度看懂選高中的全局。</p>
+          <div class="spk-photo">
+            <img src="teacher-lu.png" alt="陸怡中老師" />
+          </div>
+          <div class="spk-body">
+            <div class="nm serif">陸怡中</div>
+            <span class="badge">前附中老師</span>
+            <div class="role">南一・翰林・龍騰等多家出版社 物理參考書作者</div>
+            <p>多年在附中觀察各高中升學生態，<br>出版物理參考書由南一、翰林、龍騰等多家指標出版社發行。<br>最擅長用生活化的方式，<br>讓家長從更高的角度看懂選高中的全局。</p>
+          </div>
         </div>
       </div>
     </div>
