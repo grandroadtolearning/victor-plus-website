@@ -643,6 +643,667 @@
           await fetch(GS_ENDPOINT, {
             method: 'POST',
             mode: 'no-cors',
+            body: params
+          });
+          signupForm.style.display = 'none';
+          document.getElementById('signupSuccess').style.display = 'block';
+          document.getElementById('signupSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = original;
+          alert('送出失敗，請稍後再試，或直接來電報名：02-2314-5818。');
+        }
+      });
+    }
+
+    // ── AGENDA CAROUSEL ──
+    (function() {
+      const carousel = document.getElementById('agendaCarousel');
+      const dots = document.querySelectorAll('#agendaDots .carousel-dot');
+      const pauseBtn = document.getElementById('agendaPause');
+      if (!carousel) return;
+      let current = 0, autoplay = true, timer;
+      const cards = carousel.querySelectorAll('.value-card');
+      const total = cards.length;
+      function goTo(index) {
+        current = (index + total) % total;
+        const cardWidth = cards[0].offsetWidth + 16;
+        carousel.scrollTo({ left: current * cardWidth, behavior: 'smooth' });
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      function startAuto() {
+        clearInterval(timer);
+        timer = setInterval(() => { if (autoplay) goTo(current + 1); }, 3500);
+      }
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => { goTo(parseInt(dot.dataset.index)); autoplay = false; updatePauseIcon(); });
+      });
+      pauseBtn.addEventListener('click', () => { autoplay = !autoplay; updatePauseIcon(); if (autoplay) startAuto(); });
+      function updatePauseIcon() {
+        pauseBtn.innerHTML = autoplay
+          ? '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="3.5" height="12" rx="1.5" fill="#333"/><rect x="8.5" y="1" width="3.5" height="12" rx="1.5" fill="#333"/></svg>'
+          : '<svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 1.5l9 5.5-9 5.5V1.5z" fill="#333"/></svg>';
+      }
+      carousel.addEventListener('scroll', () => {
+        const cardWidth = cards[0].offsetWidth + 16;
+        const idx = Math.round(carousel.scrollLeft / cardWidth);
+        if (idx !== current) { current = idx; dots.forEach((d, i) => d.classList.toggle('active', i === current)); }
+      }, { passive: true });
+      startAuto();
+    })();
+  </script>
+
+</body>
+</html>
+      overflow-wrap: break-word;
+      overflow-x: hidden;
+    }
+    .serif { font-family: 'Noto Serif TC', serif; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(15,5,9,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: padding .3s;
+    }
+    nav.scrolled { padding: 12px 48px; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 900; font-size: 16px; color: #fff; text-decoration: none;
+    }
+    .nav-logo .v-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 900; font-size: 14px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      color: rgba(255,255,255,.65); font-size: 14px; font-weight: 500;
+      text-decoration: none; transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--brand); color: #fff; font-weight: 700; font-size: 14px;
+      padding: 10px 24px; border-radius: 100px; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero-wrap {
+      background:
+        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
+        var(--dark);
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 120px 48px 80px; text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1); color: rgba(255,255,255,.75);
+      font-size: 13px; font-weight: 700; padding: 6px 18px; border-radius: 100px;
+      letter-spacing: .04em; margin-bottom: 32px; border: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+    .hero-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(38px, 6vw, 72px); font-weight: 900; color: #fff;
+      line-height: 1.15; letter-spacing: -.02em; margin-bottom: 20px;
+    }
+    .hero-headline .hl { color: var(--gold); }
+    .hero-sub {
+      font-size: clamp(16px, 1.8vw, 19px); color: rgba(255,255,255,.6);
+      line-height: 1.7; margin-bottom: 28px; max-width: 540px;
+    }
+    .hero-meta {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 36px;
+    }
+    .hero-meta .chip {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700;
+      padding: 8px 16px; border-radius: 100px;
+    }
+    .hero-meta .chip b { color: var(--gold); }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .btn-primary {
+      background: var(--gold); color: #3a2600; font-weight: 900; font-size: 16px;
+      padding: 15px 36px; border-radius: 100px; text-decoration: none; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 10px 30px rgba(201,168,76,.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,168,76,.35); }
+    .link-gold { display:inline-flex; align-items:center; gap:6px; color: var(--gold); font-size:15px; font-weight:700; text-decoration:none; transition: gap .2s; }
+    .link-gold:hover { gap: 10px; }
+    .link-gold::after { content: "→"; }
+
+    /* ── SECTION SHELL ── */
+    section { padding: 88px 48px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .sec-eyebrow {
+      text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+    }
+    .sec-title {
+      font-family: 'Noto Serif TC', serif; text-align: center;
+      font-size: clamp(26px, 4vw, 42px); font-weight: 900; color: #fff;
+      line-height: 1.25; margin-bottom: 48px;
+    }
+    .sec-title .hl { color: var(--gold); }
+
+    /* ── PAIN Q-CARDS ── */
+    .qgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .qcard {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg); padding: 30px 30px;
+    }
+    .qcard .q { font-family:'Noto Serif TC',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+    .qcard p { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.5; }
+    .qcard p b { color: var(--gold-light); }
+
+    /* ── AGENDA VALUE-CARDS ── */
+    .value-cards {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      align-items: stretch; gap: 20px;
+    }
+    .value-card {
+      background: var(--brand-light); border-radius: var(--r-lg);
+      padding: 40px 28px 36px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      border: 1.5px solid rgba(123,34,82,.1);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(123,34,82,.18); }
+    .value-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .value-card-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 20px; font-weight: 900; color: var(--ink);
+      line-height: 1.35;
+    }
+    .value-card-desc { font-size: 15px; color: var(--ink-2); line-height: 1.75; flex-grow: 1; }
+    .value-card-tag {
+      display: inline-flex; align-items: center;
+      background: #fff; border: 1.5px solid rgba(123,34,82,.2);
+      color: var(--brand); font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 100px; margin-top: auto;
+    }
+    .value-carousel-wrap { display: none; }
+
+    /* ── SPEAKERS ── */
+    .spk { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .spkcard {
+      background: #000; border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .spk-photo {
+      background:
+        radial-gradient(ellipse 90% 70% at 50% 100%, rgba(123,34,82,.55) 0%, transparent 70%),
+        #0a0205;
+      display: flex; align-items: flex-end; justify-content: center;
+      height: 280px; overflow: hidden;
+    }
+    .spk-photo img {
+      height: 280px; width: auto; max-width: 100%;
+      object-fit: contain; object-position: bottom center;
+      display: block;
+    }
+    .spk-body { padding: 28px 32px 36px; }
+    .spkcard .nm { font-family:'Noto Serif TC',serif; font-size: 34px; font-weight: 900; color: #fff; }
+    .spkcard .badge {
+      display: inline-block; background: var(--gold); color: #3a2600;
+      font-size: 12px; font-weight: 900; padding: 4px 12px; border-radius: 100px;
+      letter-spacing: .03em; margin-top: 12px;
+    }
+    .spkcard .role { font-size: 15px; color: var(--gold); font-weight: 700; margin: 16px 0 12px; }
+    .spkcard p { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.75; }
+
+    /* ── EDGE ── */
+    .edge-card {
+      background: var(--brand-dark); border: 1px solid rgba(201,168,76,.25);
+      border-radius: var(--r-lg); padding: 56px 48px; text-align: center;
+    }
+    .edge-card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .edge-card h3 { font-family:'Noto Serif TC',serif; font-size: clamp(24px,3.4vw,38px); font-weight: 900; color: #fff; line-height: 1.3; }
+    .edge-card .punch { font-size: clamp(16px,2vw,20px); font-weight: 700; color: var(--gold-light); margin-top: 20px; line-height: 1.6; }
+
+    /* ── INFO ── */
+    .infocard {
+      max-width: 560px; margin: 0 auto;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .irow { display: flex; gap: 18px; padding: 20px 32px; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 17px; }
+    .irow:last-child { border-bottom: none; }
+    .irow .k { flex: 0 0 60px; color: var(--gold); font-weight: 700; }
+    .irow .v { color: #fff; font-weight: 500; }
+
+    /* ── FORM ── */
+    form {
+      max-width: 520px; margin: 0 auto; display: grid; gap: 18px;
+      background: var(--brand-light); border-radius: var(--r-lg); padding: 40px 36px;
+      border: 1.5px solid rgba(123,34,82,.12);
+    }
+    .field { display: grid; gap: 8px; text-align: left; }
+    .field label { font-size: 14px; font-weight: 700; color: var(--brand-dark); }
+    .field label .req { color: #c0392b; }
+    .field input, .field select {
+      font: inherit; font-size: 16px; padding: 14px 16px; border: 1px solid rgba(123,34,82,.25);
+      border-radius: var(--r); background: #fff; color: var(--ink);
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(123,34,82,.12); }
+    form .btn-primary { width: 100%; margin-top: 6px; }
+    .privacy { font-size: 12px; color: var(--ink-3); text-align: center; }
+
+    /* ── FAQ ── */
+    .faq { max-width: 720px; margin: 0 auto; }
+    details { border-bottom: 1px solid rgba(255,255,255,.12); }
+    summary { font-size: 18px; font-weight: 700; color: #fff; padding: 22px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold); font-weight: 400; font-size: 26px; line-height: 1; }
+    details[open] summary::after { content: "–"; }
+    details p { font-size: 15px; color: rgba(255,255,255,.6); padding: 0 0 22px; line-height: 1.7; }
+
+    /* ── FINAL CTA ── */
+    .final { text-align: center; padding-bottom: 96px; }
+    .final h2 { font-family:'Noto Serif TC',serif; font-size: clamp(26px,4vw,40px); font-weight: 900; color: #fff; margin-bottom: 14px; }
+    .final p { color: rgba(255,255,255,.6); margin-bottom: 28px; font-size: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0509; color: rgba(255,255,255,.35); padding: 32px 48px;
+      text-align: center; font-size: 13px; border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hero-wrap { padding: 100px 20px 60px; }
+      section { padding: 64px 20px; }
+      .qgrid, .spk { grid-template-columns: 1fr; }
+      .spk-photo { height: 220px; }
+      .spk-photo img { height: 220px; }
+      .edge-card { padding: 40px 26px; }
+      form { padding: 30px 24px; }
+      footer { padding: 28px 20px; }
+      /* agenda carousel on mobile */
+      .value-cards { display: none; }
+      .value-carousel-wrap { display: block; }
+      .value-carousel {
+        display: flex; overflow-x: auto;
+        scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; gap: 16px; padding: 12px 24px 20px;
+      }
+      .value-carousel::-webkit-scrollbar { display: none; }
+      .value-carousel .value-card {
+        flex: 0 0 calc(100vw - 64px); scroll-snap-align: center; min-width: 0;
+      }
+      .carousel-controls {
+        display: flex; align-items: center; justify-content: center;
+        gap: 16px; margin-top: 16px;
+      }
+      .carousel-dots { display: flex; justify-content: center; gap: 8px; }
+      .carousel-dot {
+        width: 8px; height: 8px; border-radius: 50%;
+        background: rgba(123,34,82,.25);
+        transition: all .3s; cursor: pointer; border: none; padding: 0;
+      }
+      .carousel-dot.active { background: var(--brand); width: 24px; border-radius: 4px; }
+      .carousel-pause {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: rgba(0,0,0,.06); border: none; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        transition: background .2s;
+      }
+      .carousel-pause:hover { background: rgba(0,0,0,.1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="topNav">
+    <a class="nav-logo" href="homepage.html">
+      <div class="v-badge">V+</div>
+      得勝者文教
+    </a>
+    <div class="nav-links">
+      <a href="xie.html">解創智老師</a>
+      <a href="chen.html">陳建州老師</a>
+      <a href="apex.html">APEX</a>
+      <a href="trial.html">試聽活動</a>
+    </div>
+    <a class="nav-cta" href="#form">免費報名講座</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      115 基北區・高中選校暨現況分析講座
+    </div>
+
+    <h1 class="hero-headline">
+      前附中老師，<br>帶你選對<span class="hl">高中</span>。
+    </h1>
+
+    <p class="hero-sub">
+      分數差不多，但選哪一間，結果差很遠。<br>請教真正在附中帶過數十屆學生的老師，<br>比上網查，更值。
+    </p>
+
+    <div class="hero-meta">
+      <span class="chip">📅 <b>6/6・6/7</b></span>
+      <span class="chip">📍 台北得勝者</span>
+      <span class="chip">🎟 全程免費</span>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#form" class="btn-primary">免費報名・享一對一諮詢</a>
+      <a href="#agenda" class="link-gold">了解講座內容</a>
+    </div>
+  </div>
+
+  <!-- SPEAKERS (前附中老師) -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">得勝者特邀</p>
+      <h2 class="sec-title">前附中老師，<span class="hl">親自上台</span>。</h2>
+      <div class="spk">
+        <div class="spkcard">
+          <div class="spk-photo">
+            <img src="teacher-jindao.png" alt="金刀老師" />
+          </div>
+          <div class="spk-body">
+            <div class="nm serif">金刀</div>
+            <span class="badge">前附中老師・師鐸獎得主</span>
+            <div class="role">師大附中科學班・逾 26 年・教育部教師最高榮譽</div>
+            <p>師大附中科學班老師，任教逾 26 年。<br>帶過數十屆資優生的選考歷程，<br>最懂「這個分數，該往哪裡放」。<br>他一句話，往往就幫家長省下好幾天的猶豫。</p>
+          </div>
+        </div>
+        <div class="spkcard">
+          <div class="spk-photo">
+            <img src="teacher-lu.png" alt="陸怡中老師" />
+          </div>
+          <div class="spk-body">
+            <div class="nm serif">陸怡中</div>
+            <span class="badge">前附中老師</span>
+            <div class="role">南一・翰林・龍騰等多家出版社 物理參考書作者</div>
+            <p>多年在附中觀察各高中升學生態，<br>出版物理參考書由南一、翰林、龍騰等多家指標出版社發行。<br>最擅長用生活化的方式，<br>讓家長從更高的角度看懂選高中的全局。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">成績出來那一刻，真正的考驗才開始</p>
+      <h2 class="sec-title">如果你也正在煩惱——</h2>
+      <div class="qgrid">
+        <div class="qcard"><div class="q">Q</div><p>我孩子這個分數，<b>附中有沒有機會？建中呢？</b></p></div>
+        <div class="qcard"><div class="q">Q</div><p>卡在兩間學校之間，<br><b>五個志願順序怎麼排才不後悔？</b></p></div>
+        <div class="qcard"><div class="q">Q</div><p>高中跟國中差很大，<b>孩子上去之後要怎麼適應？</b></p></div>
+        <div class="qcard"><div class="q">Q</div><p>各高中的風氣和特色，<b>選之前完全摸不著頭緒。</b></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <div class="container">
+      <p class="sec-eyebrow">這場講座，你會帶走</p>
+      <h2 class="sec-title">前附中老師親自告訴你的<span class="hl">四件事</span>。</h2>
+      <!-- Desktop 2×2 grid -->
+      <div class="value-cards">
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="10" stroke="white" stroke-width="2.2"/>
+              <circle cx="16" cy="16" r="4" fill="white"/>
+              <line x1="16" y1="3" x2="16" y2="8" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="16" y1="24" x2="16" y2="29" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="3" y1="16" x2="8" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="24" y1="16" x2="29" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">你的成績，適合哪一間？</h3>
+          <p class="value-card-desc">不只是看落點範圍，而是由在附中帶過數十屆學生的老師，告訴你這個分數真實的可能性。</p>
+          <span class="value-card-tag">聽對人的判斷</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="7" y="5" width="18" height="22" rx="3" stroke="white" stroke-width="2.2"/>
+              <line x1="11" y1="12" x2="21" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="17" x2="21" y2="17" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <polyline points="11,22 14,22" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">左右為難時，怎麼選？</h3>
+          <p class="value-card-desc">卡在兩間學校之間最痛苦。老師教你用一個邏輯，幫你在猶豫不決時做出不後悔的決定。</p>
+          <span class="value-card-tag">不再猶豫</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M13 19a7 7 0 1 1 7-7 7 7 0 0 1-7 7z" stroke="white" stroke-width="2.2"/>
+              <circle cx="13" cy="12" r="2.5" fill="white"/>
+              <line x1="18" y1="18" x2="27" y2="27" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">各高中真實現況</h3>
+          <p class="value-card-desc">麗山理科強、各校有各校的風氣……前附中老師第一手告訴你，比網路傳言更準、更真實。</p>
+          <span class="value-card-tag">第一手消息</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="5" y="8" width="22" height="19" rx="3" stroke="white" stroke-width="2.2"/>
+              <line x1="5" y1="14" x2="27" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="5" x2="11" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="21" y1="5" x2="21" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <polyline points="10,20 14,24 22,18" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">高中生活，家長要知道的事</h3>
+          <p class="value-card-desc">高中和國中差在哪？孩子要怎麼獨立自主？給家長一份「孩子上高中之前」的心理準備。</p>
+          <span class="value-card-tag">提早做好準備</span>
+        </div>
+      </div>
+
+      <!-- Mobile carousel -->
+      <div class="value-carousel-wrap">
+        <div class="value-carousel" id="agendaCarousel">
+          <div class="value-card">
+            <div class="value-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="white" stroke-width="2.2"/><circle cx="16" cy="16" r="4" fill="white"/><line x1="16" y1="3" x2="16" y2="8" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="29" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="3" y1="16" x2="8" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="16" x2="29" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="value-card-title">你的成績，適合哪一間？</h3>
+            <p class="value-card-desc">不只是看落點範圍，而是由在附中帶過數十屆學生的老師，告訴你這個分數真實的可能性。</p>
+            <span class="value-card-tag">聽對人的判斷</span>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="7" y="5" width="18" height="22" rx="3" stroke="white" stroke-width="2.2"/><line x1="11" y1="12" x2="21" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="17" x2="21" y2="17" stroke="white" stroke-width="2" stroke-linecap="round"/><polyline points="11,22 14,22" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="value-card-title">左右為難時，怎麼選？</h3>
+            <p class="value-card-desc">卡在兩間學校之間最痛苦。老師教你用一個邏輯，幫你在猶豫不決時做出不後悔的決定。</p>
+            <span class="value-card-tag">不再猶豫</span>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M13 19a7 7 0 1 1 7-7 7 7 0 0 1-7 7z" stroke="white" stroke-width="2.2"/><circle cx="13" cy="12" r="2.5" fill="white"/><line x1="18" y1="18" x2="27" y2="27" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 class="value-card-title">各高中真實現況</h3>
+            <p class="value-card-desc">麗山理科強、各校有各校的風氣……前附中老師第一手告訴你，比網路傳言更準、更真實。</p>
+            <span class="value-card-tag">第一手消息</span>
+          </div>
+          <div class="value-card">
+            <div class="value-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="5" y="8" width="22" height="19" rx="3" stroke="white" stroke-width="2.2"/><line x1="5" y1="14" x2="27" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/><line x1="11" y1="5" x2="11" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="21" y1="5" x2="21" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/><polyline points="10,20 14,24 22,18" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 class="value-card-title">高中生活，家長要知道的事</h3>
+            <p class="value-card-desc">高中和國中差在哪？孩子要怎麼獨立自主？給家長一份「孩子上高中之前」的心理準備。</p>
+            <span class="value-card-tag">提早做好準備</span>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-dots" id="agendaDots">
+            <button class="carousel-dot active" data-index="0"></button>
+            <button class="carousel-dot" data-index="1"></button>
+            <button class="carousel-dot" data-index="2"></button>
+            <button class="carousel-dot" data-index="3"></button>
+          </div>
+          <button class="carousel-pause" id="agendaPause" aria-label="暫停自動播放">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <rect x="2" y="1" width="3.5" height="12" rx="1.5" fill="#333"/>
+              <rect x="8.5" y="1" width="3.5" height="12" rx="1.5" fill="#333"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 一對一諮詢 -->
+  <section>
+    <div class="container">
+      <div class="edge-card">
+        <p class="tag">提早報名・專屬服務</p>
+        <h3 class="serif">當天現場，<br>一對一諮詢。</h3>
+        <p class="punch">帶著成績單來，我們幫你現場一對一分析志願怎麼填。<br>這不是大班教學，是你自己的諮詢時間。<br>名額有限——先報名，先排。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">活動資訊</p>
+      <h2 class="sec-title">講座這樣參加。</h2>
+      <div class="infocard">
+        <div class="irow"><span class="k">日期</span><span class="v">6/6（六）、6/7（日）</span></div>
+        <div class="irow"><span class="k">時間</span><span class="v">14:00–16:00</span></div>
+        <div class="irow"><span class="k">地點</span><span class="v">台北得勝者文教<br>台北市中山南路2巷5號（捷運北車 M8 出口）</span></div>
+        <div class="irow"><span class="k">對象</span><span class="v">115 會考生與家長（基北區）</span></div>
+        <div class="irow"><span class="k">費用</span><span class="v">全程免費・線上報名</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form">
+    <div class="container">
+      <p class="sec-eyebrow">立即報名</p>
+      <h2 class="sec-title">留下資料，<span class="hl">幫你保留座位</span>。</h2>
+      <form id="signupForm">
+        <div class="field">
+          <label>學生姓名 <span class="req">*</span></label>
+          <input type="text" name="student_name" required placeholder="請填學生姓名" />
+        </div>
+        <div class="field">
+          <label>家長聯絡電話 <span class="req">*</span></label>
+          <input type="tel" name="phone" required placeholder="0900-000-000" />
+        </div>
+        <div class="field">
+          <label>就讀國中</label>
+          <input type="text" name="school" placeholder="例：○○國中" />
+        </div>
+        <div class="field">
+          <label>欲參加場次 <span class="req">*</span></label>
+          <select name="session" required>
+            <option value="">請選擇</option>
+            <option>6/6（六）</option>
+            <option>6/7（日）</option>
+            <option>兩天皆可</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">送出報名</button>
+        <p class="privacy">送出即表示同意得勝者文教就本次活動與您聯繫。</p>
+      </form>
+
+      <!-- 送出成功後顯示 -->
+      <div id="signupSuccess" style="display:none;max-width:520px;margin:0 auto;background:var(--brand-light);border:1.5px solid rgba(123,34,82,.12);border-radius:var(--r-lg);padding:48px 36px;text-align:center;">
+        <div style="font-size:44px;line-height:1;margin-bottom:16px;">✅</div>
+        <h3 class="serif" style="font-size:26px;font-weight:900;color:var(--brand-dark);margin-bottom:10px;">報名成功！</h3>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.7;">我們已收到你的報名資料，<br>稍後將由專人與你聯繫確認場次。<br>期待 6/6・6/7 與你見面！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">常見問題</p>
+      <h2 class="sec-title">報名前，先看這裡。</h2>
+      <div class="faq">
+        <details><summary>要帶什麼資料來？</summary><p>帶上孩子的會考成績單（各科等級），現場可以直接讓老師看，一對一諮詢時也用得到。</p></details>
+        <details><summary>一對一諮詢怎麼安排？</summary><p>報名後，當天現場依報名順序安排一對一時段，每組約 10–15 分鐘。名額有限，建議提早報名確保排到。</p></details>
+        <details><summary>一定要帶孩子一起來嗎？</summary><p>歡迎家長與學生一起參加。志願選填是全家的決定，一起聽過，討論時更有共識。</p></details>
+        <details><summary>真的完全免費嗎？</summary><p>是的，講座與一對一諮詢全程免費，現場不強迫購買任何課程，安心參加。</p></details>
+        <details><summary>不是基北區可以參加嗎？</summary><p>本場以基北區為主，但高中選校與生活分析的觀念適用性廣，歡迎報名前先與我們確認。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="container">
+      <h2 class="serif">6/6・6/7，帶著成績來，帶著答案回家。</h2>
+      <p>名額有限・一對一諮詢先報先排。</p>
+      <a href="#form" class="btn-primary">免費報名講座</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 VICTOR<sup>+</sup> 得勝者文教・115 基北區高中選校暨現況分析講座<br>
+    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('topNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ── 報名表單 → Google Sheet ──
+       1. 在 Google Sheet 建立 Apps Script（doPost），部署為「網頁應用程式」
+       2. 把部署後的網址貼到下面這行 GS_ENDPOINT */
+    const GS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwl3MrPW6huT1SnIZIUbvl7eko9AtAYFA-NZjJEHOI1xWMK8mQFmbsZBCKWcYrTPv7d/exec';
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = signupForm.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '送出中…';
+        try {
+          const params = new URLSearchParams(new FormData(signupForm));
+          await fetch(GS_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
             body: params.toString()
           });
           signupForm.style.display = 'none';
