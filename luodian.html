@@ -248,6 +248,30 @@
     .field input:focus, .field select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(123,34,82,.12); }
     form .btn-primary { width: 100%; margin-top: 6px; }
     .privacy { font-size: 12px; color: var(--ink-3); text-align: center; }
+    .line-divider { display: flex; align-items: center; gap: 12px; margin: 4px 0; }
+    .line-divider::before, .line-divider::after { content: ''; flex: 1; height: 1px; background: rgba(123,34,82,.15); }
+    .line-divider span { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+    .btn-line {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 14px; border-radius: 100px;
+      background: #06C755; color: #fff;
+      font-size: 16px; font-weight: 900; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-line:hover { background: #05a847; transform: translateY(-1px); }
+    .btn-line svg { flex-shrink: 0; }
+
+    /* ── LINE 浮動按鈕 ── */
+    .line-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #06C755;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,199,85,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
 
     /* ── FAQ ── */
     .faq { max-width: 720px; margin: 0 auto; }
@@ -579,6 +603,14 @@
           </select>
         </div>
         <button type="submit" class="btn-primary">送出報名</button>
+        <div class="line-divider"><span>或</span></div>
+        <a href="https://lin.ee/sUygaV8" target="_blank" class="btn-line">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+            <path d="M9.1 8.3H8.2a.3.3 0 0 0-.3.3v3.8c0 .17.14.3.3.3h.9c.17 0 .3-.13.3-.3V8.6a.3.3 0 0 0-.3-.3zM14.1 8.3h-.9a.3.3 0 0 0-.3.3v2.26L11.3 8.45a.34.34 0 0 0-.26-.15h-.9a.3.3 0 0 0-.3.3v3.8c0 .17.13.3.3.3h.9c.16 0 .3-.13.3-.3V10.1l1.63 2.43c.05.08.14.12.22.12h.9c.17 0 .3-.13.3-.3V8.6a.3.3 0 0 0-.3-.3z" fill="#06C755"/>
+          </svg>
+          LINE 直接諮詢
+        </a>
         <p class="privacy">送出即表示同意得勝者文教就本次活動與您聯繫。</p>
       </form>
 
@@ -614,6 +646,13 @@
       <a href="#form" class="btn-primary">免費報名講座</a>
     </div>
   </section>
+
+  <!-- LINE 浮動按鈕 -->
+  <a href="https://lin.ee/sUygaV8" target="_blank" class="line-float" aria-label="LINE 諮詢">
+    <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+    </svg>
+  </a>
 
   <!-- FOOTER -->
   <footer>
