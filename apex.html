@@ -1109,6 +1109,16 @@
       #topNav { padding: 14px 20px; }
       .nav-links { display: none; }
     }
+    .line-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #06C755;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,199,85,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
   </style>
 </head>
 <body>
@@ -1554,5 +1564,11 @@
       nav.classList.toggle('scrolled', y > 20);
     }, { passive: true });
   </script>
+
+  <a href="https://lin.ee/sUygaV8" target="_blank" class="line-float" aria-label="LINE 諮詢">
+    <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+    </svg>
+  </a>
 </body>
 </html>
