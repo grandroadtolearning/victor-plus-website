@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
       --brand: #7B2252;
       --brand-dark: #4A1133;
@@ -25,16 +26,25 @@
       --r-lg: 24px;
       --shadow: 0 8px 32px rgba(123,34,82,.12);
     }
+
     html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Noto Sans TC', sans-serif;
       background: var(--dark);
       color: #fff;
       min-height: 100vh;
+      word-break: keep-all;
       overflow-wrap: break-word;
       overflow-x: hidden;
     }
     .serif { font-family: 'Noto Serif TC', serif; }
+
+    /* ── 響應式斷行：手機專屬斷點 ──
+       普通 <br> = 桌機+手機都斷
+       <br class="br-m"> = 只有手機斷，桌機隱藏 */
+    .br-m { display: none; }
+    @media (max-width: 760px) { .br-m { display: inline; } }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -68,6 +78,7 @@
       transition: background .2s, transform .2s;
     }
     .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
     /* ── HERO ── */
     .hero-wrap {
       background:
@@ -87,6 +98,7 @@
     }
     .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2.4s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
     .hero-headline {
       font-family: 'Noto Serif TC', serif;
       font-size: clamp(38px, 6vw, 72px); font-weight: 900; color: #fff;
@@ -118,6 +130,7 @@
     .link-gold { display:inline-flex; align-items:center; gap:6px; color: var(--gold); font-size:15px; font-weight:700; text-decoration:none; transition: gap .2s; }
     .link-gold:hover { gap: 10px; }
     .link-gold::after { content: "→"; }
+
     /* ── SECTION SHELL ── */
     section { padding: 88px 48px; }
     .container { max-width: 900px; margin: 0 auto; }
@@ -131,6 +144,7 @@
       line-height: 1.25; margin-bottom: 48px;
     }
     .sec-title .hl { color: var(--gold); }
+
     /* ── PAIN Q-CARDS ── */
     .qgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     @media (min-width: 761px) {
@@ -143,6 +157,7 @@
     .qcard .q { font-family:'Noto Serif TC',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 12px; }
     .qcard p { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.5; }
     .qcard p b { color: var(--gold-light); }
+
     /* ── AGENDA VALUE-CARDS ── */
     .value-cards {
       display: grid; grid-template-columns: repeat(2, 1fr);
@@ -174,6 +189,7 @@
       padding: 4px 14px; border-radius: 100px; margin-top: auto;
     }
     .value-carousel-wrap { display: none; }
+
     /* ── SPEAKERS ── */
     .spk { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     .spkcard {
@@ -201,6 +217,7 @@
     }
     .spkcard .role { font-size: 15px; color: var(--gold); font-weight: 700; margin: 16px 0 12px; }
     .spkcard p { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.75; }
+
     /* ── EDGE ── */
     .edge-card {
       background: var(--brand-dark); border: 1px solid rgba(201,168,76,.25);
@@ -209,6 +226,7 @@
     .edge-card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
     .edge-card h3 { font-family:'Noto Serif TC',serif; font-size: clamp(24px,3.4vw,38px); font-weight: 900; color: #fff; line-height: 1.3; }
     .edge-card .punch { font-size: clamp(16px,2vw,20px); font-weight: 700; color: var(--gold-light); margin-top: 20px; line-height: 1.6; }
+
     /* ── INFO ── */
     .infocard {
       max-width: 560px; margin: 0 auto; width: 100%;
@@ -219,6 +237,7 @@
     .irow:last-child { border-bottom: none; }
     .irow .k { flex: 0 0 60px; color: var(--gold); font-weight: 700; }
     .irow .v { color: #fff; font-weight: 500; }
+
     /* ── FORM ── */
     form {
       max-width: 520px; margin: 0 auto; display: grid; gap: 18px; width: 100%;
@@ -247,6 +266,7 @@
     }
     .btn-line:hover { background: #05a847; transform: translateY(-1px); }
     .btn-line svg { flex-shrink: 0; }
+
     /* ── LINE 浮動按鈕 ── */
     .line-float {
       position: fixed; bottom: 28px; right: 24px; z-index: 200;
@@ -258,6 +278,7 @@
       transition: transform .2s, box-shadow .2s;
     }
     .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
+
     /* ── FAQ ── */
     .faq { max-width: 720px; margin: 0 auto; }
     details { border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -266,10 +287,12 @@
     summary::after { content: "+"; color: var(--gold); font-weight: 400; font-size: 26px; line-height: 1; }
     details[open] summary::after { content: "–"; }
     details p { font-size: 15px; color: rgba(255,255,255,.6); padding: 0 0 22px; line-height: 1.7; }
+
     /* ── FINAL CTA ── */
     .final { text-align: center; padding-bottom: 96px; }
     .final h2 { font-family:'Noto Serif TC',serif; font-size: clamp(26px,4vw,40px); font-weight: 900; color: #fff; margin-bottom: 14px; }
     .final p { color: rgba(255,255,255,.6); margin-bottom: 28px; font-size: 16px; }
+
     /* ── FOOTER ── */
     footer {
       background: #0f0509; color: rgba(255,255,255,.35); padding: 32px 48px;
@@ -277,6 +300,7 @@
     }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; }
     footer a:hover { color: #fff; }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 760px) {
       nav { padding: 14px 20px; }
@@ -324,6 +348,7 @@
   </style>
 </head>
 <body>
+
   <!-- NAV -->
   <nav id="topNav">
     <a class="nav-logo" href="homepage.html">
@@ -338,28 +363,34 @@
     </div>
     <a class="nav-cta" href="#form">免費報名講座</a>
   </nav>
+
   <!-- HERO -->
   <div class="hero-wrap">
     <div class="hero-eyebrow">
       <div class="dot"></div>
       115 基北區落點分析・高中選校暨現況分析講座
     </div>
+
     <h1 class="hero-headline">
       前附中老師，<br>帶你選對<span class="hl">高中</span>。
     </h1>
+
     <p class="hero-sub">
-      會考分數差不多，但選哪一間高中，三年後可能差很多！<br>比起上網查，請教「在附中帶過數十屆學生的老師」，更值。
+      會考分數差不多，但選哪一間高中，<br class="br-m">三年後可能差很多！<br>比起上網查，請教<br class="br-m">「在附中帶過數十屆學生的老師」，更值。
     </p>
+
     <div class="hero-meta">
       <span class="chip">📅 <b>6/6・6/7</b></span>
       <span class="chip">📍 台北得勝者</span>
       <span class="chip">🎟 全程免費</span>
     </div>
+
     <div class="hero-ctas">
       <a href="#form" class="btn-primary">免費報名・享一對一諮詢</a>
       <a href="#agenda" class="link-gold">了解講座內容</a>
     </div>
   </div>
+
   <!-- SPEAKERS (前附中老師) -->
   <section>
     <div class="container">
@@ -391,6 +422,7 @@
       </div>
     </div>
   </section>
+
   <!-- PAIN -->
   <section>
     <div class="container">
@@ -398,11 +430,12 @@
       <h2 class="sec-title">如果你也正在煩惱——</h2>
       <div class="qgrid">
         <div class="qcard"><div class="q">Q</div><p>卡在兩間學校之間，<br><b>五個志願順序怎麼排才不後悔？</b></p></div>
-        <div class="qcard"><div class="q">Q</div><p>高中跟國中差很大，<b>孩子上去之後要怎麼適應？</b></p></div>
-        <div class="qcard"><div class="q">Q</div><p>各高中的風氣和特色，<b>選之前完全摸不著頭緒。</b></p></div>
+        <div class="qcard"><div class="q">Q</div><p>高中跟國中差很大，<br><b>孩子上去之後要怎麼適應？</b></p></div>
+        <div class="qcard"><div class="q">Q</div><p>各高中的風氣和特色，<br><b>選之前完全摸不著頭緒。</b></p></div>
       </div>
     </div>
   </section>
+
   <!-- AGENDA -->
   <section id="agenda">
     <div class="container">
@@ -422,9 +455,10 @@
             </svg>
           </div>
           <h3 class="value-card-title">你的成績，適合哪一間？</h3>
-          <p class="value-card-desc">不只是看落點範圍，而是由在附中帶過數十屆學生的老師，告訴你這個分數真實的可能性。</p>
+          <p class="value-card-desc">不只是看落點範圍，<br>而是由在附中帶過數十屆學生的老師，<br>告訴你這個分數真實的可能性。</p>
           <span class="value-card-tag">聽對人的判斷</span>
         </div>
+
         <div class="value-card">
           <div class="value-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -438,6 +472,7 @@
           <p class="value-card-desc">卡在兩間學校之間最痛苦。<br>老師獨到的分析，<br>幫你在猶豫不決時做出不後悔的決定。</p>
           <span class="value-card-tag">不再猶豫</span>
         </div>
+
         <div class="value-card">
           <div class="value-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -450,6 +485,7 @@
           <p class="value-card-desc">各校有各校的風氣……<br>前附中老師第一手告訴你，<br>比網路傳言更準、更真實。</p>
           <span class="value-card-tag">第一手消息</span>
         </div>
+
         <div class="value-card">
           <div class="value-icon">
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
@@ -465,6 +501,7 @@
           <span class="value-card-tag">提早做好準備</span>
         </div>
       </div>
+
       <!-- Mobile carousel -->
       <div class="value-carousel-wrap">
         <div class="value-carousel" id="agendaCarousel">
@@ -473,7 +510,7 @@
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="10" stroke="white" stroke-width="2.2"/><circle cx="16" cy="16" r="4" fill="white"/><line x1="16" y1="3" x2="16" y2="8" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="16" y1="24" x2="16" y2="29" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="3" y1="16" x2="8" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/><line x1="24" y1="16" x2="29" y2="16" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg>
             </div>
             <h3 class="value-card-title">你的成績，適合哪一間？</h3>
-            <p class="value-card-desc">不只是看落點範圍，而是由在附中帶過數十屆學生的老師，告訴你這個分數真實的可能性。</p>
+            <p class="value-card-desc">不只是看落點範圍，<br>而是由在附中帶過數十屆學生的老師，<br>告訴你這個分數真實的可能性。</p>
             <span class="value-card-tag">聽對人的判斷</span>
           </div>
           <div class="value-card">
@@ -518,16 +555,18 @@
       </div>
     </div>
   </section>
+
   <!-- 一對一諮詢 -->
   <section>
     <div class="container">
       <div class="edge-card">
         <p class="tag">提早報名・專屬服務</p>
         <h3 class="serif">當天現場，<br>一對一諮詢。</h3>
-        <p class="punch">帶著成績單來，我們幫你現場一對一分析志願怎麼填。<br>這不是大班教學，是你自己的諮詢時間。<br>名額有限——先報名，先排。</p>
+        <p class="punch">帶著成績單來，我們幫你<br class="br-m">現場一對一分析志願怎麼填。<br>這不是大班教學，<br class="br-m">是你自己的諮詢時間。<br>名額有限——先報名，先排。</p>
       </div>
     </div>
   </section>
+
   <!-- INFO -->
   <section>
     <div class="container">
@@ -536,12 +575,13 @@
       <div class="infocard">
         <div class="irow"><span class="k">日期</span><span class="v">6/6（六）、6/7（日）</span></div>
         <div class="irow"><span class="k">時間</span><span class="v">14:00–16:00</span></div>
-        <div class="irow"><span class="k">地點</span><span class="v">台北得勝者文教<br>台北市中山南路2巷5號（捷運北車 M8 出口）</span></div>
+        <div class="irow"><span class="k">地點</span><span class="v">台北得勝者文教<br>台北市中山南路2巷5號<br class="br-m">（捷運北車 M8 出口）</span></div>
         <div class="irow"><span class="k">對象</span><span class="v">115 會考生與家長（基北區）</span></div>
         <div class="irow"><span class="k">費用</span><span class="v">全程免費・線上報名</span></div>
       </div>
     </div>
   </section>
+
   <!-- FORM -->
   <section id="form">
     <div class="container">
@@ -579,6 +619,7 @@
         </a>
         <p class="privacy">送出即表示同意得勝者文教就本次活動與您聯繫。</p>
       </form>
+
       <!-- 送出成功後顯示 -->
       <div id="signupSuccess" style="display:none;max-width:520px;margin:0 auto;background:var(--brand-light);border:1.5px solid rgba(123,34,82,.12);border-radius:var(--r-lg);padding:48px 36px;text-align:center;">
         <div style="font-size:44px;line-height:1;margin-bottom:16px;">✅</div>
@@ -587,6 +628,7 @@
       </div>
     </div>
   </section>
+
   <!-- FAQ -->
   <section>
     <div class="container">
@@ -601,6 +643,7 @@
       </div>
     </div>
   </section>
+
   <!-- FINAL CTA -->
   <section class="final">
     <div class="container">
@@ -609,22 +652,26 @@
       <a href="#form" class="btn-primary">免費報名講座</a>
     </div>
   </section>
+
   <!-- LINE 浮動按鈕 -->
   <a href="https://lin.ee/sUygaV8" target="_blank" class="line-float" aria-label="LINE 諮詢">
     <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
       <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
     </svg>
   </a>
+
   <!-- FOOTER -->
   <footer>
     © 2026 VICTOR<sup>+</sup> 得勝者文教・115 基北區高中選校暨現況分析講座<br>
     <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
   </footer>
+
   <script>
     const nav = document.getElementById('topNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
+
     /* ── 報名表單 → Google Sheet ──
        1. 在 Google Sheet 建立 Apps Script（doPost），部署為「網頁應用程式」
        2. 把部署後的網址貼到下面這行 GS_ENDPOINT */
@@ -655,6 +702,7 @@
         }
       });
     }
+
     // ── AGENDA CAROUSEL ──
     (function() {
       const carousel = document.getElementById('agendaCarousel');
@@ -691,5 +739,6 @@
       startAuto();
     })();
   </script>
+
 </body>
 </html>
