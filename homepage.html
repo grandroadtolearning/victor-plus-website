@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>得勝者文教｜國三升高一課程</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #7B2252;
+      --brand-dark: #4A1133;
+      --brand-light: #f3e8f0;
+      --gold: #C9A84C;
+      --gold-light: #e8d49a;
+      --ink: #1a1a1a;
+      --ink-2: #444;
+      --ink-3: #888;
+      --bg: #ffffff;
+      --r: 14px;
+      --r-lg: 24px;
+      --shadow: 0 8px 32px rgba(123,34,82,.12);
+    }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(15,5,9,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      transition: padding .3s;
+    }
+    nav.scrolled { padding: 12px 48px; }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 900; font-size: 16px; color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo .v-badge {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 900; font-size: 14px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,.65);
+      font-size: 14px; font-weight: 500;
+      text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: var(--brand);
+      color: #fff; font-weight: 700; font-size: 14px;
+      padding: 10px 24px; border-radius: 100px;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero-wrap {
+      background:
+        radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
+        #0f0509;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 48px 80px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.1);
+      color: rgba(255,255,255,.75);
+      font-size: 13px; font-weight: 700;
+      padding: 6px 18px; border-radius: 100px;
+      letter-spacing: .04em;
+      margin-bottom: 32px;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+    .hero-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(38px, 6vw, 72px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 20px;
+    }
+    .hero-headline .hl { color: var(--gold); }
+
+    .hero-sub {
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: rgba(255,255,255,.6);
+      line-height: 1.7;
+      margin-bottom: 64px;
+      max-width: 520px;
+    }
+
+    /* ── CARD GRID ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); }
+
+    /* APEX card — full-width, dark */
+    .card-apex {
+      grid-column: 1 / -1;
+      background: #000;
+      padding: 48px 56px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .card-apex:hover { box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+    .card-apex-left { flex: 1; }
+    .card-apex-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .card-apex-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 900; color: #fff;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .card-apex-sub {
+      font-size: 15px; color: rgba(255,255,255,.5);
+      line-height: 1.6; margin-bottom: 24px;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 700; color: var(--gold);
+      transition: gap .2s;
+    }
+    .card:hover .card-link { gap: 10px; }
+    .card-link-brand { color: var(--brand); }
+    .card-apex-stat {
+      text-align: center; flex-shrink: 0;
+    }
+    .card-apex-num {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(64px, 8vw, 96px);
+      font-weight: 900; color: var(--gold);
+      letter-spacing: -.04em; line-height: 1;
+    }
+    .card-apex-num-pct { font-size: .45em; color: rgba(201,168,76,.7); }
+    .card-apex-num-label { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 6px; }
+
+    /* 試聽 card */
+    .card-shijian {
+      grid-column: 1 / -1;
+      background: var(--brand-dark);
+      padding: 40px 56px;
+      border: 1px solid rgba(255,255,255,.06);
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .card-shijian:hover { box-shadow: 0 20px 48px rgba(74,17,51,.5); }
+    .card-shijian-left { flex: 1; }
+    .card-shijian-right {
+      display: flex; flex-direction: column;
+      align-items: flex-end; gap: 12px; flex-shrink: 0;
+    }
+    .card-shijian-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 700; letter-spacing: .08em;
+      color: var(--gold); text-transform: uppercase;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.35);
+      padding: 4px 12px; border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .card-shijian-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(24px, 2.8vw, 36px);
+      font-weight: 900; color: #fff;
+      line-height: 1.2; margin-bottom: 10px;
+    }
+    .card-shijian-sub {
+      font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7;
+      margin-bottom: 0;
+    }
+    .card-shijian-rewards {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .card-reward {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.8);
+      justify-content: flex-end;
+    }
+    .card-reward .badge {
+      background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.4);
+      color: var(--gold); font-size: 12px; font-weight: 700;
+      padding: 3px 10px; border-radius: 100px;
+    }
+
+    /* 落點分析 card */
+    .card-luodian {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, #3a0d22 0%, #7B2252 55%, #9c3b6a 100%);
+      border: 1px solid rgba(201,168,76,.25);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; padding: 32px 36px;
+    }
+    .card-luodian:hover { box-shadow: 0 20px 48px rgba(123,34,82,.45); transform: translateY(-2px); }
+    .card-luodian-left { flex: 1; }
+    .card-luodian-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .card-luodian-tag::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); display: inline-block;
+      animation: pulse 2.4s ease-in-out infinite;
+    }
+    .card-luodian-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(20px, 3vw, 28px); font-weight: 900; color: #fff;
+      line-height: 1.3; margin-bottom: 10px;
+    }
+    .card-luodian-title .gold { color: var(--gold); }
+    .card-luodian-sub { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.7; }
+    .card-luodian-right {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+    }
+    .card-luodian-chips { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
+    .luodian-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.85); font-size: 12px; font-weight: 700;
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    /* Teacher cards */
+    .card-teacher {
+      background: var(--brand-light);
+      padding: 36px 36px 40px;
+      border: 1.5px solid rgba(123,34,82,.1);
+    }
+    .card-teacher:hover { box-shadow: var(--shadow); }
+    .card-teacher-num {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      color: rgba(123,34,82,.4); text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .card-teacher-badge {
+      display: inline-block; background: var(--gold);
+      color: #3a2600; font-size: 11px; font-weight: 900;
+      padding: 3px 10px; border-radius: 100px; letter-spacing: .03em;
+      margin-bottom: 14px;
+    }
+    .card-teacher-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 900; color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .card-teacher-desc {
+      font-size: 14px; color: var(--ink-2); line-height: 1.7;
+      margin-bottom: 28px; flex: 1;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0509;
+      color: rgba(255,255,255,.35);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav { padding: 14px 20px; }
+      nav.scrolled { padding: 10px 20px; }
+      .nav-links { display: none; }
+      .hero-wrap { padding: 100px 20px 60px; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .card-apex {
+        flex-direction: column; text-align: center;
+        padding: 36px 28px;
+      }
+      .card-apex-stat { order: -1; }
+      .card-shijian {
+        flex-direction: column; padding: 28px 24px 32px;
+      }
+      .card-shijian-right { align-items: flex-start; }
+      .card-reward { justify-content: flex-start; }
+      .card-teacher { padding: 28px 24px 32px; }
+      .card-luodian { flex-direction: column; padding: 28px 24px 32px; }
+      footer { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="topNav">
+    <a class="nav-logo" href="#">
+      <div class="v-badge">V+</div>
+      得勝者文教
+    </a>
+    <div class="nav-links">
+      <a href="xie.html">解創智老師</a>
+      <a href="chen.html">陳建州老師</a>
+      <a href="apex.html">APEX</a>
+      <a href="trial.html">試聽活動</a>
+      <a href="english-trial.html">英文試聽</a>
+    </div>
+    <a class="nav-cta" href="trial.html">立即報名試聽</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero-wrap">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      2026 國三升高一數學課程
+    </div>
+
+    <h1 class="hero-headline">
+      高中，<br>從這裡開始<span class="hl">贏</span>。
+    </h1>
+
+    <p class="hero-sub">
+      兩位頂尖老師，一個關鍵暑假。<br>讓孩子提早站上高中數學的起跑線。
+    </p>
+
+    <!-- CARDS -->
+    <div class="cards-grid">
+
+      <!-- 英文試聽 -->
+      <a class="card card-luodian" href="english-trial.html">
+        <div class="card-luodian-left">
+          <div class="card-luodian-tag">6/18・7/3 免費試聽</div>
+          <h2 class="card-luodian-title">
+            三升一英文試聽・<br>
+            <span class="gold">課內 × 興趣 × 方法</span>，三師同堂。
+          </h2>
+          <p class="card-luodian-sub">
+            Penny × Gary × 競廷——<br>
+            幫孩子把升高一的英文底子，一次打穩。
+          </p>
+        </div>
+        <div class="card-luodian-right">
+          <div class="card-luodian-chips">
+            <span class="luodian-chip">6/18・7/3</span>
+            <span class="luodian-chip">全程免費</span>
+            <span class="luodian-chip">三師同堂</span>
+          </div>
+          <span class="card-link" style="color:var(--gold);">免費報名試聽 →</span>
+        </div>
+      </a>
+
+      <!-- 解創智 -->
+      <a class="card card-teacher" href="xie.html">
+        <div class="card-teacher-num">數學老師 01</div>
+        <span class="card-teacher-badge">30 年數學名師</span>
+        <h2 class="card-teacher-name">解創智老師</h2>
+        <p class="card-teacher-desc">
+          用最基礎的概念，解最困難的題目——<br>
+          帶出無數醫牙電資頂大學生。
+        </p>
+        <span class="card-link card-link-brand">認識解老師 →</span>
+      </a>
+
+      <!-- 陳建州 -->
+      <a class="card card-teacher" href="chen.html">
+        <div class="card-teacher-num">數學老師 02</div>
+        <span class="card-teacher-badge">數學鬼才</span>
+        <h2 class="card-teacher-name">陳建州老師</h2>
+        <p class="card-teacher-desc">
+          變化多端的題目，在他手裡都能拆解至基本觀念。<br>
+          從基本觀念連結至多種解法，打開數學思維，<br>
+          讓學生真正理解！
+        </p>
+        <span class="card-link card-link-brand">認識建州老師 →</span>
+      </a>
+
+      <!-- 試聽活動 -->
+      <a class="card card-shijian" href="trial.html">
+        <div class="card-shijian-left">
+          <div class="card-shijian-tag">
+            <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;"></span>
+            限時試聽活動
+          </div>
+          <h2 class="card-shijian-title">
+            兩位老師都聽，<br>現金 1,000 元。
+          </h2>
+          <p class="card-shijian-sub">免費試聽，開學前找到最對的老師</p>
+        </div>
+        <div class="card-shijian-right">
+          <div class="card-shijian-rewards">
+            <div class="card-reward">
+              聽一堂 <span class="badge">☕ 星巴克</span>
+            </div>
+            <div class="card-reward">
+              兩堂都聽 <span class="badge">💰 千元現金</span>
+            </div>
+          </div>
+          <span class="card-link" style="margin-top:8px;">查看試聽場次 →</span>
+        </div>
+      </a>
+
+      <!-- APEX 全寬 -->
+      <a class="card card-apex" href="apex.html">
+        <div class="card-apex-left">
+          <p class="card-apex-tag">APEX 巔峰班</p>
+          <h2 class="card-apex-title">
+            學測數A 滿分路線。<br>提早開始，才來得及。
+          </h2>
+          <p class="card-apex-sub">
+            台大醫學・電機・資工的入場門票——<br>數A 15 級分，全台只有這麼少人做到。
+          </p>
+          <span class="card-link">了解 APEX 巔峰班 →</span>
+        </div>
+        <div class="card-apex-stat">
+          <div class="card-apex-num">1.23<span class="card-apex-num-pct">%</span></div>
+          <div class="card-apex-num-label">115年全台考生拿到數A 15 級分</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 VICTOR<sup>+</sup> 得勝者文教・國三升高一數學課程<br>
+    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('topNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
