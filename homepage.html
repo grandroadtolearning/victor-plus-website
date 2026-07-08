@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>得勝者文教｜國三升高一課程</title>
+  <title>一個暑假，超前一個學期｜得勝者文教 暑期讀考班（升高二）</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237B2252'/%3E%3Ctext x='16' y='23' font-size='17' font-family='Arial,Helvetica,sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3EV+%3C/text%3E%3C/svg%3E" />
+  <meta name="description" content="高一升高二的暑假，是最容易拉開差距的6週。每天10:00–17:00完整讀書節奏，紮實累積相當於一整個學期的讀書量。專業輔導老師、有紀律的管理、仿真模擬考，只要 3000 元。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
@@ -20,20 +22,28 @@
       --ink-2: #444;
       --ink-3: #888;
       --bg: #ffffff;
+      --dark: #0f0509;
       --r: 14px;
       --r-lg: 24px;
       --shadow: 0 8px 32px rgba(123,34,82,.12);
     }
 
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    /* 普通 <br> = 桌機+手機都斷（手動設計的斷行）
+       <br class="br-m"> = 只有手機斷，桌機隱藏 */
+    .br-m { display: none; }
+    @media (max-width: 760px) { .br-m { display: inline; } }
     body {
       font-family: 'Noto Sans TC', sans-serif;
-      background: var(--bg);
-      color: var(--ink);
+      background: var(--dark);
+      color: #fff;
       min-height: 100vh;
       word-break: keep-all;
       overflow-wrap: break-word;
       overflow-x: hidden;
     }
+    .serif { font-family: 'Noto Serif TC', serif; }
 
     /* ── NAV ── */
     nav {
@@ -48,8 +58,7 @@
     nav.scrolled { padding: 12px 48px; }
     .nav-logo {
       display: flex; align-items: center; gap: 10px;
-      font-weight: 900; font-size: 16px; color: #fff;
-      text-decoration: none;
+      font-weight: 900; font-size: 16px; color: #fff; text-decoration: none;
     }
     .nav-logo .v-badge {
       width: 32px; height: 32px; border-radius: 50%;
@@ -57,21 +66,9 @@
       display: flex; align-items: center; justify-content: center;
       color: #fff; font-weight: 900; font-size: 14px;
     }
-    .nav-links {
-      display: flex; align-items: center; gap: 32px;
-    }
-    .nav-links a {
-      color: rgba(255,255,255,.65);
-      font-size: 14px; font-weight: 500;
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: #fff; }
     .nav-cta {
-      background: var(--brand);
-      color: #fff; font-weight: 700; font-size: 14px;
-      padding: 10px 24px; border-radius: 100px;
-      text-decoration: none;
+      background: var(--brand); color: #fff; font-weight: 700; font-size: 14px;
+      padding: 10px 24px; border-radius: 100px; text-decoration: none;
       transition: background .2s, transform .2s;
     }
     .nav-cta:hover { background: var(--brand-dark); transform: translateY(-1px); }
@@ -82,246 +79,258 @@
         radial-gradient(ellipse 60% 55% at 10% 30%, rgba(123,34,82,.7) 0%, transparent 60%),
         radial-gradient(ellipse 50% 45% at 90% 70%, rgba(74,17,51,.6) 0%, transparent 55%),
         radial-gradient(ellipse 40% 35% at 55% 5%, rgba(201,168,76,.25) 0%, transparent 50%),
-        #0f0509;
+        var(--dark);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 120px 48px 80px;
-      text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 120px 48px 80px; text-align: center;
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.1);
-      color: rgba(255,255,255,.75);
-      font-size: 13px; font-weight: 700;
-      padding: 6px 18px; border-radius: 100px;
-      letter-spacing: .04em;
-      margin-bottom: 32px;
-      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.1); color: rgba(255,255,255,.75);
+      font-size: 13px; font-weight: 700; padding: 6px 18px; border-radius: 100px;
+      letter-spacing: .04em; margin-bottom: 32px; border: 1px solid rgba(255,255,255,.15);
     }
-    .hero-eyebrow .dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold);
-      animation: pulse 2.4s ease-in-out infinite;
-    }
+    .hero-eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2.4s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
 
     .hero-headline {
       font-family: 'Noto Serif TC', serif;
-      font-size: clamp(38px, 6vw, 72px);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.15;
-      letter-spacing: -.02em;
-      margin-bottom: 20px;
+      font-size: clamp(38px, 6vw, 72px); font-weight: 900; color: #fff;
+      line-height: 1.15; letter-spacing: -.02em; margin-bottom: 28px;
     }
     .hero-headline .hl { color: var(--gold); }
-
     .hero-sub {
-      font-size: clamp(16px, 1.8vw, 19px);
-      color: rgba(255,255,255,.6);
-      line-height: 1.7;
-      margin-bottom: 64px;
-      max-width: 520px;
+      font-size: clamp(15px, 1.6vw, 17px); color: rgba(255,255,255,.5);
+      line-height: 1.7; letter-spacing: .03em; margin-bottom: 32px; max-width: 500px;
     }
+    .hero-meta {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      margin-bottom: 36px;
+    }
+    .hero-meta .chip {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700;
+      padding: 8px 16px; border-radius: 100px;
+    }
+    .hero-meta .chip b { color: var(--gold); }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center; }
+    .btn-primary {
+      background: var(--gold); color: #3a2600; font-weight: 900; font-size: 16px;
+      padding: 15px 36px; border-radius: 100px; text-decoration: none; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 10px 30px rgba(201,168,76,.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(201,168,76,.35); }
+    .link-gold { display:inline-flex; align-items:center; gap:6px; color: var(--gold); font-size:15px; font-weight:700; text-decoration:none; transition: gap .2s; }
+    .link-gold:hover { gap: 10px; }
+    .link-gold::after { content: "→"; }
 
-    /* ── CARD GRID ── */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      max-width: 900px;
-      width: 100%;
+    /* ── SECTION SHELL ── */
+    section { padding: 88px 48px; scroll-margin-top: 80px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .sec-eyebrow {
+      text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
     }
+    .sec-title {
+      font-family: 'Noto Serif TC', serif; text-align: center;
+      font-size: clamp(26px, 4vw, 42px); font-weight: 900; color: #fff;
+      line-height: 1.25; margin-bottom: 48px;
+    }
+    .sec-title .hl { color: var(--gold); }
+    .sec-lead { text-align:center; color: rgba(255,255,255,.6); font-size:16px; line-height:1.8; max-width:620px; margin: -28px auto 48px; }
 
-    .card {
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      transition: transform .3s ease, box-shadow .3s ease;
-      cursor: pointer;
+    /* ── THE MATH（核心訴求：超車）── */
+    .math-wrap {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 18px; align-items: stretch;
     }
-    .card:hover { transform: translateY(-4px); }
+    .math-col {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg); padding: 36px 28px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .math-col.win {
+      background: rgba(201,168,76,.08); border: 1.5px solid rgba(201,168,76,.45);
+    }
+    .math-col .m-label { font-size: 14px; font-weight: 700; color: rgba(255,255,255,.7); margin-bottom: 6px; }
+    .math-col.win .m-label { color: var(--gold-light); }
+    .math-col .m-formula { font-size: 14px; color: rgba(255,255,255,.45); margin-bottom: 18px; line-height: 1.6; }
+    .math-col .m-big { font-family: 'Noto Serif TC', serif; font-size: clamp(40px,7vw,56px); font-weight: 900; line-height: 1; color: #fff; }
+    .math-col.win .m-big { color: var(--gold); }
+    .math-col .m-unit { font-size: 18px; font-weight: 700; color: rgba(255,255,255,.6); margin-top: 6px; }
+    .math-col.win .m-unit { color: var(--gold-light); }
+    .math-eq {
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Noto Serif TC', serif; font-size: 48px; font-weight: 900; color: var(--gold);
+    }
+    .math-punch {
+      margin-top: 28px; text-align: center;
+      font-family: 'Noto Serif TC', serif; font-size: clamp(20px,3vw,28px); font-weight: 900;
+      color: #fff; line-height: 1.5;
+    }
+    .math-punch .hl { color: var(--gold); }
+    .math-note { text-align:center; color: rgba(255,255,255,.4); font-size: 13px; margin-top: 14px; line-height:1.7; }
 
-    /* APEX card — full-width, dark */
-    .card-apex {
-      grid-column: 1 / -1;
-      background: #000;
-      padding: 48px 56px;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      border: 1px solid rgba(255,255,255,.08);
+    /* ── PAIN Q-CARDS ── */
+    .qgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    @media (min-width: 761px) {
+      .qgrid .qcard:last-child:nth-child(odd) { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
     }
-    .card-apex:hover { box-shadow: 0 24px 60px rgba(0,0,0,.5); }
-    .card-apex-left { flex: 1; }
-    .card-apex-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 12px;
+    .qcard {
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg); padding: 30px 30px;
     }
-    .card-apex-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 900; color: #fff;
-      line-height: 1.2; margin-bottom: 10px;
-    }
-    .card-apex-sub {
-      font-size: 15px; color: rgba(255,255,255,.5);
-      line-height: 1.6; margin-bottom: 24px;
-    }
-    .card-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 14px; font-weight: 700; color: var(--gold);
-      transition: gap .2s;
-    }
-    .card:hover .card-link { gap: 10px; }
-    .card-link-brand { color: var(--brand); }
-    .card-apex-stat {
-      text-align: center; flex-shrink: 0;
-    }
-    .card-apex-num {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(64px, 8vw, 96px);
-      font-weight: 900; color: var(--gold);
-      letter-spacing: -.04em; line-height: 1;
-    }
-    .card-apex-num-pct { font-size: .45em; color: rgba(201,168,76,.7); }
-    .card-apex-num-label { font-size: 13px; color: rgba(255,255,255,.4); margin-top: 6px; }
+    .qcard .q { font-family:'Noto Serif TC',serif; font-size: 28px; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 12px; }
+    .qcard p { font-size: 18px; font-weight: 700; color: #fff; line-height: 1.5; }
+    .qcard p b { color: var(--gold-light); }
 
-    /* 試聽 card */
-    .card-shijian {
-      grid-column: 1 / -1;
-      background: var(--brand-dark);
-      padding: 40px 56px;
-      border: 1px solid rgba(255,255,255,.06);
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-    }
-    .card-shijian:hover { box-shadow: 0 20px 48px rgba(74,17,51,.5); }
-    .card-shijian-left { flex: 1; }
-    .card-shijian-right {
-      display: flex; flex-direction: column;
-      align-items: flex-end; gap: 12px; flex-shrink: 0;
-    }
-    .card-shijian-tag {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 11px; font-weight: 700; letter-spacing: .08em;
-      color: var(--gold); text-transform: uppercase;
-      background: rgba(201,168,76,.12);
-      border: 1px solid rgba(201,168,76,.35);
-      padding: 4px 12px; border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .card-shijian-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(24px, 2.8vw, 36px);
-      font-weight: 900; color: #fff;
-      line-height: 1.2; margin-bottom: 10px;
-    }
-    .card-shijian-sub {
-      font-size: 14px; color: rgba(255,255,255,.5); line-height: 1.7;
-      margin-bottom: 0;
-    }
-    .card-shijian-rewards {
-      display: flex; flex-direction: column; gap: 10px;
-    }
-    .card-reward {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.8);
-      justify-content: flex-end;
-    }
-    .card-reward .badge {
-      background: rgba(201,168,76,.15);
-      border: 1px solid rgba(201,168,76,.4);
-      color: var(--gold); font-size: 12px; font-weight: 700;
-      padding: 3px 10px; border-radius: 100px;
-    }
-
-    /* 落點分析 card */
-    .card-luodian {
-      grid-column: 1 / -1;
-      background: linear-gradient(135deg, #3a0d22 0%, #7B2252 55%, #9c3b6a 100%);
-      border: 1px solid rgba(201,168,76,.25);
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; padding: 32px 36px;
-    }
-    .card-luodian:hover { box-shadow: 0 20px 48px rgba(123,34,82,.45); transform: translateY(-2px); }
-    .card-luodian-left { flex: 1; }
-    .card-luodian-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: .1em;
-      color: var(--gold); text-transform: uppercase; margin-bottom: 12px;
-      display: flex; align-items: center; gap: 7px;
-    }
-    .card-luodian-tag::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); display: inline-block;
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-    .card-luodian-title {
-      font-family: 'Noto Serif TC', serif;
-      font-size: clamp(20px, 3vw, 28px); font-weight: 900; color: #fff;
-      line-height: 1.3; margin-bottom: 10px;
-    }
-    .card-luodian-title .gold { color: var(--gold); }
-    .card-luodian-sub { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.7; }
-    .card-luodian-right {
-      flex-shrink: 0;
-      display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
-    }
-    .card-luodian-chips { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
-    .luodian-chip {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
-      color: rgba(255,255,255,.85); font-size: 12px; font-weight: 700;
-      padding: 6px 14px; border-radius: 100px;
-    }
-
-    /* Teacher cards */
-    .card-teacher {
-      background: var(--brand-light);
-      padding: 36px 36px 40px;
+    /* ── VALUE-CARDS（橫向手風琴：icon｜標題+標籤｜＋ 切換，點開往下展開說明）── */
+    .value-cards { display: flex; flex-direction: column; gap: 14px; }
+    .value-card {
+      background: var(--brand-light); border-radius: var(--r-lg);
       border: 1.5px solid rgba(123,34,82,.1);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        "icon title toggle"
+        "icon tag   toggle"
+        "desc desc  desc";
+      align-items: center; column-gap: 18px; row-gap: 4px;
+      text-align: left; padding: 20px 24px;
+      cursor: pointer;
+      transition: box-shadow .2s, border-color .2s;
     }
-    .card-teacher:hover { box-shadow: var(--shadow); }
-    .card-teacher-num {
-      font-size: 11px; font-weight: 700; letter-spacing: .1em;
-      color: rgba(123,34,82,.4); text-transform: uppercase;
-      margin-bottom: 20px;
+    .value-card:hover { box-shadow: 0 8px 28px rgba(123,34,82,.14); border-color: rgba(123,34,82,.28); }
+    .value-icon {
+      grid-area: icon; align-self: center;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--brand);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     }
-    .card-teacher-badge {
-      display: inline-block; background: var(--gold);
-      color: #3a2600; font-size: 11px; font-weight: 900;
-      padding: 3px 10px; border-radius: 100px; letter-spacing: .03em;
-      margin-bottom: 14px;
-    }
-    .card-teacher-name {
+    .value-card-title {
+      grid-area: title; align-self: end;
       font-family: 'Noto Serif TC', serif;
-      font-size: clamp(22px, 2.5vw, 30px);
-      font-weight: 900; color: var(--ink);
-      margin-bottom: 10px;
+      font-size: 19px; font-weight: 900; color: var(--ink); line-height: 1.3;
     }
-    .card-teacher-desc {
-      font-size: 14px; color: var(--ink-2); line-height: 1.7;
-      margin-bottom: 28px; flex: 1;
+    .value-card-tag {
+      grid-area: tag; align-self: start; justify-self: start;
+      display: inline-flex; align-items: center;
+      background: #fff; border: 1.5px solid rgba(123,34,82,.2);
+      color: var(--brand); font-size: 12px; font-weight: 700;
+      padding: 3px 13px; border-radius: 100px;
     }
+    .value-hint {
+      grid-area: toggle; align-self: center;
+      width: 34px; height: 34px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--brand); color: #fff; border: none;
+      font: inherit; font-size: 22px; font-weight: 400; line-height: 1;
+      cursor: pointer; flex-shrink: 0; transition: background .2s;
+    }
+    .value-card:hover .value-hint { background: var(--brand-dark); }
+    .value-card-desc {
+      grid-area: desc;
+      font-size: 15px; color: var(--ink-2); line-height: 1.8; display: none;
+      word-break: normal; line-break: strict;   /* 內文：自然填滿寬度折行，標點不掉行首 */
+    }
+    .value-card.open .value-card-desc { display: block; margin-top: 12px; }
+
+    /* ── EDGE（給家長的隱藏好處）── */
+    .edge-card {
+      background: var(--brand-dark); border: 1px solid rgba(201,168,76,.25);
+      border-radius: var(--r-lg); padding: 56px 48px; text-align: center;
+    }
+    .edge-card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .edge-card h3 { font-family:'Noto Serif TC',serif; font-size: clamp(24px,3.4vw,38px); font-weight: 900; color: #fff; line-height: 1.3; }
+    .edge-card .punch { font-size: clamp(16px,2vw,20px); font-weight: 700; color: var(--gold-light); margin-top: 20px; line-height: 1.7; }
+
+    /* ── PRICE ── */
+    .price-card {
+      max-width: 560px; margin: 0 auto; text-align: center;
+      background: rgba(255,255,255,.04); border: 1.5px solid rgba(201,168,76,.4);
+      border-radius: var(--r-lg); padding: 48px 40px;
+    }
+    .price-card .p-top { font-size: 16px; color: rgba(255,255,255,.7); font-weight: 700; margin-bottom: 14px; line-height:1.6; }
+    .price-card .p-amount { font-family:'Noto Serif TC',serif; line-height:1; margin-bottom: 10px; }
+    .price-card .p-amount .num { font-size: clamp(56px,12vw,88px); font-weight: 900; color: var(--gold); }
+    .price-card .p-amount .cur { font-size: 28px; font-weight: 900; color: var(--gold); }
+    .price-card .p-amount .unit { font-size: 22px; font-weight: 700; color: rgba(255,255,255,.65); }
+    .price-card .p-sub { font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.8; margin-top: 12px; }
+    .price-card .p-sub b { color: var(--gold-light); }
+
+    /* ── INFO ── */
+    .infocard {
+      width: 100%; max-width: 560px; margin: 0 auto;
+      background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r-lg); overflow: hidden;
+    }
+    .irow { display: flex; gap: 18px; padding: 20px 32px; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 17px; }
+    .irow:last-child { border-bottom: none; }
+    .irow .k { flex: 0 0 60px; color: var(--gold); font-weight: 700; }
+    .irow .v { color: #fff; font-weight: 500; line-height: 1.6; min-width: 0; }
+    .irow .v b { color: var(--gold-light); }
+
+    /* ── FORM ── */
+    form {
+      width: 100%; max-width: 520px; margin: 0 auto; display: grid; gap: 18px;
+      background: var(--brand-light); border-radius: var(--r-lg); padding: 40px 36px;
+      border: 1.5px solid rgba(123,34,82,.12);
+    }
+    .field { display: grid; gap: 8px; text-align: left; }
+    .field label { font-size: 14px; font-weight: 700; color: var(--brand-dark); }
+    .field label .req { color: #c0392b; }
+    .field input, .field select {
+      width: 100%;
+      font: inherit; font-size: 16px; padding: 14px 16px; border: 1px solid rgba(123,34,82,.25);
+      border-radius: var(--r); background: #fff; color: var(--ink);
+    }
+    .field input:focus, .field select:focus { outline: none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(123,34,82,.12); }
+    form .btn-primary { width: 100%; margin-top: 6px; }
+    .privacy { font-size: 12px; color: var(--ink-3); text-align: center; }
+    .line-divider { display: flex; align-items: center; gap: 12px; margin: 4px 0; }
+    .line-divider::before, .line-divider::after { content: ''; flex: 1; height: 1px; background: rgba(123,34,82,.15); }
+    .line-divider span { font-size: 12px; color: var(--ink-3); white-space: nowrap; }
+    .btn-line {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 14px; border-radius: 100px;
+      background: #06C755; color: #fff;
+      font-size: 16px; font-weight: 900; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .btn-line:hover { background: #05a847; transform: translateY(-1px); }
+    .btn-line svg { flex-shrink: 0; }
+
+    /* ── LINE 浮動按鈕 ── */
+    .line-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #06C755;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,199,85,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
+
+    /* ── FAQ ── */
+    .faq { max-width: 720px; margin: 0 auto; }
+    details { border-bottom: 1px solid rgba(255,255,255,.12); }
+    summary { font-size: 18px; font-weight: 700; color: #fff; padding: 22px 0; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold); font-weight: 400; font-size: 26px; line-height: 1; }
+    details[open] summary::after { content: "–"; }
+    details p { font-size: 15px; color: rgba(255,255,255,.6); padding: 0 0 22px; line-height: 1.8; }
+
+    /* ── FINAL CTA ── */
+    .final { text-align: center; padding-bottom: 96px; }
+    .final h2 { font-family:'Noto Serif TC',serif; font-size: clamp(26px,4vw,40px); font-weight: 900; color: #fff; margin-bottom: 14px; line-height:1.3; }
+    .final p { color: rgba(255,255,255,.6); margin-bottom: 28px; font-size: 16px; }
 
     /* ── FOOTER ── */
     footer {
-      background: #0f0509;
-      color: rgba(255,255,255,.35);
-      padding: 32px 48px;
-      text-align: center;
-      font-size: 13px;
-      border-top: 1px solid rgba(255,255,255,.06);
+      background: #0f0509; color: rgba(255,255,255,.35); padding: 32px 48px;
+      text-align: center; font-size: 13px; border-top: 1px solid rgba(255,255,255,.06);
     }
     footer a { color: rgba(255,255,255,.5); text-decoration: none; }
     footer a:hover { color: #fff; }
@@ -330,22 +339,29 @@
     @media (max-width: 760px) {
       nav { padding: 14px 20px; }
       nav.scrolled { padding: 10px 20px; }
-      .nav-links { display: none; }
       .hero-wrap { padding: 100px 20px 60px; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .card-apex {
-        flex-direction: column; text-align: center;
-        padding: 36px 28px;
-      }
-      .card-apex-stat { order: -1; }
-      .card-shijian {
-        flex-direction: column; padding: 28px 24px 32px;
-      }
-      .card-shijian-right { align-items: flex-start; }
-      .card-reward { justify-content: flex-start; }
-      .card-teacher { padding: 28px 24px 32px; }
-      .card-luodian { flex-direction: column; padding: 28px 24px 32px; }
+      section { padding: 64px 20px; }
+      .qgrid { grid-template-columns: 1fr; }
+      /* grid 子項允許縮小，避免 keep-all 長句把欄位撐出畫面 */
+      .qcard, .value-card { min-width: 0; }
+      .qcard { padding: 24px 20px; }
+      .qcard p { font-size: 16px; }
+      /* 手機版價值卡：橫向手風琴微調 */
+      .value-cards { gap: 12px; }
+      .value-card { padding: 15px 16px; column-gap: 13px; }
+      .value-icon { width: 46px; height: 46px; }
+      .value-icon svg { width: 24px; height: 24px; }
+      .value-card-title { font-size: 16px; }
+      .value-hint { width: 32px; height: 32px; font-size: 20px; }
+      .value-card-desc { font-size: 15px; line-height: 1.8; line-break: strict; }
+      .edge-card { padding: 40px 26px; }
+      form { padding: 30px 24px; }
       footer { padding: 28px 20px; }
+      .price-card { padding: 40px 26px; }
+      /* math 直向堆疊 */
+      .math-wrap { grid-template-columns: 1fr; }
+      .math-eq { font-size: 36px; padding: 4px 0; }
+      .math-col { padding: 28px 24px; }
     }
   </style>
 </head>
@@ -353,136 +369,279 @@
 
   <!-- NAV -->
   <nav id="topNav">
-    <a class="nav-logo" href="#">
+    <a class="nav-logo" href="#top">
       <div class="v-badge">V+</div>
       得勝者文教
     </a>
-    <div class="nav-links">
-      <a href="xie.html">解創智老師</a>
-      <a href="chen.html">陳建州老師</a>
-      <a href="apex.html">APEX</a>
-      <a href="trial.html">試聽活動</a>
-      <a href="english-trial.html">英文試聽</a>
-    </div>
-    <a class="nav-cta" href="trial.html">立即報名試聽</a>
+    <a class="nav-cta" href="#form">立即報名</a>
   </nav>
 
   <!-- HERO -->
-  <div class="hero-wrap">
+  <div class="hero-wrap" id="top">
     <div class="hero-eyebrow">
       <div class="dot"></div>
-      2026 國三升高一數學課程
+      2026 暑期讀考班・升高二專屬
     </div>
 
     <h1 class="hero-headline">
-      高中，<br>從這裡開始<span class="hl">贏</span>。
+      一個暑假<br>超前<span class="hl">一個學期</span>
     </h1>
 
     <p class="hero-sub">
-      兩位頂尖老師，一個關鍵暑假。<br>讓孩子提早站上高中數學的起跑線。
+      別人放空兩個月，<br>
+      您的孩子累積了兩百小時<br>
+      ——等於整整一個學期的讀書量。<br>
+      開學那天，差距已經悄悄拉開！
     </p>
 
-    <!-- CARDS -->
-    <div class="cards-grid">
+    <div class="hero-meta">
+      <span class="chip">📅 <b>7/13 － 8/21</b></span>
+      <span class="chip">🕙 週一到週五 10:00–17:00</span>
+      <span class="chip">💰 全期 <b>$3,000</b></span>
+    </div>
 
-      <!-- 英文試聽 -->
-      <a class="card card-luodian" href="english-trial.html">
-        <div class="card-luodian-left">
-          <div class="card-luodian-tag">6/18・7/3 免費試聽</div>
-          <h2 class="card-luodian-title">
-            三升一英文試聽・<br>
-            <span class="gold">課內 × 興趣 × 方法</span>，三師同堂。
-          </h2>
-          <p class="card-luodian-sub">
-            Penny × Gary × 競廷——<br>
-            幫孩子把升高一的英文底子，一次打穩。
-          </p>
-        </div>
-        <div class="card-luodian-right">
-          <div class="card-luodian-chips">
-            <span class="luodian-chip">6/18・7/3</span>
-            <span class="luodian-chip">全程免費</span>
-            <span class="luodian-chip">三師同堂</span>
-          </div>
-          <span class="card-link" style="color:var(--gold);">免費報名試聽 →</span>
-        </div>
-      </a>
-
-      <!-- 解創智 -->
-      <a class="card card-teacher" href="xie.html">
-        <div class="card-teacher-num">數學老師 01</div>
-        <span class="card-teacher-badge">30 年數學名師</span>
-        <h2 class="card-teacher-name">解創智老師</h2>
-        <p class="card-teacher-desc">
-          用最基礎的概念，解最困難的題目——<br>
-          帶出無數醫牙電資頂大學生。
-        </p>
-        <span class="card-link card-link-brand">認識解老師 →</span>
-      </a>
-
-      <!-- 陳建州 -->
-      <a class="card card-teacher" href="chen.html">
-        <div class="card-teacher-num">數學老師 02</div>
-        <span class="card-teacher-badge">數學鬼才</span>
-        <h2 class="card-teacher-name">陳建州老師</h2>
-        <p class="card-teacher-desc">
-          變化多端的題目，在他手裡都能拆解至基本觀念。<br>
-          從基本觀念連結至多種解法，打開數學思維，<br>
-          讓學生真正理解！
-        </p>
-        <span class="card-link card-link-brand">認識建州老師 →</span>
-      </a>
-
-      <!-- 試聽活動 -->
-      <a class="card card-shijian" href="trial.html">
-        <div class="card-shijian-left">
-          <div class="card-shijian-tag">
-            <span style="width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block;"></span>
-            限時試聽活動
-          </div>
-          <h2 class="card-shijian-title">
-            兩位老師都聽，<br>現金 1,000 元。
-          </h2>
-          <p class="card-shijian-sub">免費試聽，開學前找到最對的老師</p>
-        </div>
-        <div class="card-shijian-right">
-          <div class="card-shijian-rewards">
-            <div class="card-reward">
-              聽一堂 <span class="badge">☕ 星巴克</span>
-            </div>
-            <div class="card-reward">
-              兩堂都聽 <span class="badge">💰 千元現金</span>
-            </div>
-          </div>
-          <span class="card-link" style="margin-top:8px;">查看試聽場次 →</span>
-        </div>
-      </a>
-
-      <!-- APEX 全寬 -->
-      <a class="card card-apex" href="apex.html">
-        <div class="card-apex-left">
-          <p class="card-apex-tag">APEX 巔峰班</p>
-          <h2 class="card-apex-title">
-            學測數A 滿分路線。<br>提早開始，才來得及。
-          </h2>
-          <p class="card-apex-sub">
-            台大醫學・電機・資工的入場門票——<br>數A 15 級分，全台只有這麼少人做到。
-          </p>
-          <span class="card-link">了解 APEX 巔峰班 →</span>
-        </div>
-        <div class="card-apex-stat">
-          <div class="card-apex-num">1.23<span class="card-apex-num-pct">%</span></div>
-          <div class="card-apex-num-label">115年全台考生拿到數A 15 級分</div>
-        </div>
-      </a>
-
+    <div class="hero-ctas">
+      <a href="#form" class="btn-primary">立即報名・名額有限</a>
+      <a href="#math" class="link-gold">看「超車」怎麼算出來的</a>
     </div>
   </div>
 
+  <!-- PAIN -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">每年暑假，差距就是這樣拉開的</p>
+      <h2 class="sec-title">您是不是也在擔心——</h2>
+      <div class="qgrid">
+        <div class="qcard"><div class="q">！</div><p>放兩個月暑假，<br class="br-m">小孩<b>在家根本讀不下去，<br class="br-m">白白荒廢時間。</b></p></div>
+        <div class="qcard"><div class="q">！</div><p>您在上班，<br class="br-m"><b>不知道孩子整天一個人<br class="br-m">在家到底在幹嘛。</b></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE MATH（核心訴求） -->
+  <section id="math">
+    <div class="container">
+      <p class="sec-eyebrow">為什麼一個暑假能超前一個學期</p>
+      <h2 class="sec-title">這不是口號，<span class="hl">是算出來的</span>。</h2>
+      <p class="sec-lead">
+        孩子平常放學回家，<br class="br-m">真正能坐下來讀的時間其實有限。<br>
+        但這個暑假，他每天都在完整的讀書節奏裡——<br class="br-m">把時間攤開算，您會嚇一跳。
+      </p>
+
+      <div class="math-wrap">
+        <div class="math-col">
+          <div class="m-label">上學期間・放學回家後讀（一整學期）</div>
+          <div class="m-formula">每天約 2 小時 × 一週 5 天 × 約 20 週</div>
+          <div class="m-big">200</div>
+          <div class="m-unit">小時</div>
+        </div>
+
+        <div class="math-eq">≈</div>
+
+        <div class="math-col win">
+          <div class="m-label">暑期讀考班（一個暑假）</div>
+          <div class="m-formula">每天約 6.5 小時 × 一週 5 天 × 約 6 週</div>
+          <div class="m-big">195</div>
+          <div class="m-unit">小時</div>
+        </div>
+      </div>
+
+      <p class="math-punch">
+        同樣的讀書量，<br>
+        別人花一整個學期，<br class="br-m"><span class="hl">您的孩子一個暑假就完成。</span>
+      </p>
+      <p class="math-note">
+        ＊以上為一般情況的概算，實際時數依個人專注程度與出席狀況而定。<br>
+        無論孩子是想超前、還是想把上學期落後的進度補回來——這個暑假，都是最好的時機。
+      </p>
+    </div>
+  </section>
+
+  <!-- 解法 / VALUE -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">不只是把孩子丟來自習</p>
+      <h2 class="sec-title">我們做的，是<span class="hl">有節奏的讀書</span>。</h2>
+      <div class="value-cards">
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="5" y="8" width="22" height="19" rx="3" stroke="white" stroke-width="2.2"/>
+              <line x1="5" y1="14" x2="27" y2="14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="5" x2="11" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <line x1="21" y1="5" x2="21" y2="11" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+              <polyline points="10,20 14,24 22,18" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">有紀律的讀書節奏</h3>
+          <p class="value-card-desc">不是放著讓孩子自生自滅。全程有老師管理、有節奏地推進，讓孩子在良好的讀書氛圍裡，自然坐得住、讀得進去。</p>
+          <span class="value-card-tag">有人管・讀得進去</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="11" r="5" stroke="white" stroke-width="2.2"/>
+              <path d="M7 26c0-4.5 4-7.5 9-7.5s9 3 9 7.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">隨時能問的專業輔導老師</h3>
+          <p class="value-card-desc">卡住不用等。現場輔導老師多為醫學、牙醫、中醫等科系背景，孩子有問題隨時能預約詢問。</p>
+          <span class="value-card-tag">醫學牙醫・優秀學長姐</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <rect x="7" y="4" width="18" height="24" rx="3" stroke="white" stroke-width="2.2"/>
+              <line x1="11" y1="11" x2="21" y2="11" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="16" x2="21" y2="16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="21" x2="17" y2="21" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">充分的考題與一次仿真模擬考</h3>
+          <p class="value-card-desc">準備充分的練習題，並在讀考班結束後（8/24、8/25）安排一次仿真模擬學測，讓孩子提早體驗節奏、檢視成果，知道自己現在站在哪裡。</p>
+          <span class="value-card-tag">先練・先有底</span>
+        </div>
+
+        <div class="value-card">
+          <div class="value-icon">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+              <path d="M16 4l2.6 7.8H27l-6.7 4.9 2.6 7.8L16 19.6 9.1 24.5l2.6-7.8L5 11.8h8.4z" stroke="white" stroke-width="2.2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="value-card-title">量身訂做的學習計畫</h3>
+          <p class="value-card-desc">我們協助為孩子規劃專屬的讀書計畫！若進度跟不上，也會隨時討論、調整計劃內容。讓這個暑假的每一小時，都花在對的地方。</p>
+          <span class="value-card-tag">為孩子量身規劃</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDGE（給家長的隱藏好處） -->
+  <section>
+    <div class="container">
+      <div class="edge-card">
+        <p class="tag">給上班爸媽的剛剛好</p>
+        <h3 class="serif">您上班的時間，<br>剛好孩子在這裡讀書。</h3>
+        <p class="punch">
+          上班時，<br class="br-m">不必再擔心孩子一個人在家虛度。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICE -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">這樣的一個暑假，要多少？</p>
+      <h2 class="sec-title">把價格也<span class="hl">算給您看</span>。</h2>
+      <div class="price-card">
+        <div class="p-top">完整六週・每天 10:00–17:00・全期費用</div>
+        <div class="p-amount">
+          <span class="cur">$</span><span class="num">3,000</span>
+        </div>
+        <p class="p-sub">
+          換算下來，<br class="br-m">一個暑假累積一整個學期的讀書量，<br>
+          <b>平均一天只要 100 元。</b><br><br>
+          我們只想在這個關鍵的暑假，<b>陪孩子一起衝。</b>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">開課資訊</p>
+      <h2 class="sec-title">梯次與地點</h2>
+      <div class="infocard">
+        <div class="irow"><span class="k">梯次</span><span class="v">7/13（一）－ 8/21（五）</span></div>
+        <div class="irow"><span class="k">時間</span><span class="v">週一到週五　10:00–17:00<br class="br-m">（完整讀書節奏規劃）</span></div>
+        <div class="irow"><span class="k">對象</span><span class="v">高一升高二學生</span></div>
+        <div class="irow"><span class="k">費用</span><span class="v">全期 <b>$3,000</b></span></div>
+        <div class="irow"><span class="k">地點</span><span class="v">台北得勝者文教<br><span style="font-size:14px;color:rgba(255,255,255,.65);">台北市中山南路2巷5號<br class="br-m">（北車M8出口）</span></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section id="form">
+    <div class="container">
+      <p class="sec-eyebrow">立即報名</p>
+      <h2 class="sec-title">留下資料，<span class="hl">幫孩子卡住位子</span>。</h2>
+      <form id="signupForm">
+        <div class="field">
+          <label>學生姓名 <span class="req">*</span></label>
+          <input type="text" name="student_name" required placeholder="請填學生姓名" />
+        </div>
+        <div class="field">
+          <label>聯絡電話 <span class="req">*</span></label>
+          <input type="tel" name="phone" required placeholder="0900-000-000" />
+        </div>
+        <div class="field">
+          <label>就讀高中</label>
+          <input type="text" name="school" placeholder="例：○○高中" />
+        </div>
+        <input type="hidden" name="session" value="7/13 － 8/21" />
+        <button type="submit" class="btn-primary">送出報名</button>
+        <div class="line-divider"><span>或</span></div>
+        <a href="#" data-line target="_blank" class="btn-line">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+            <path d="M9.1 8.3H8.2a.3.3 0 0 0-.3.3v3.8c0 .17.14.3.3.3h.9c.17 0 .3-.13.3-.3V8.6a.3.3 0 0 0-.3-.3zM14.1 8.3h-.9a.3.3 0 0 0-.3.3v2.26L11.3 8.45a.34.34 0 0 0-.26-.15h-.9a.3.3 0 0 0-.3.3v3.8c0 .17.13.3.3.3h.9c.16 0 .3-.13.3-.3V10.1l1.63 2.43c.05.08.14.12.22.12h.9c.17 0 .3-.13.3-.3V8.6a.3.3 0 0 0-.3-.3z" fill="#06C755"/>
+          </svg>
+          LINE 直接諮詢
+        </a>
+        <p class="privacy">送出即表示同意得勝者文教就本次課程與您聯繫。</p>
+      </form>
+
+      <!-- 送出成功後顯示 -->
+      <div id="signupSuccess" style="display:none;max-width:520px;margin:0 auto;background:var(--brand-light);border:1.5px solid rgba(123,34,82,.12);border-radius:var(--r-lg);padding:48px 36px;text-align:center;">
+        <div style="font-size:44px;line-height:1;margin-bottom:16px;">✅</div>
+        <h3 class="serif" style="font-size:26px;font-weight:900;color:var(--brand-dark);margin-bottom:10px;">報名資料已收到！</h3>
+        <p style="font-size:16px;color:var(--ink-2);line-height:1.8;">我們已收到您的報名資料，<br>稍後將由專人與您聯繫確認梯次。<br>這個暑假，我們陪孩子一起衝！</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <p class="sec-eyebrow">常見問題</p>
+      <h2 class="sec-title">有問題，請看這裡。</h2>
+      <div class="faq">
+        <details><summary>一定要每天都到嗎？</summary><p>建議盡量全程參與，因為「超前一個學期」靠的就是每天累積的讀書時數。當然，臨時有事可彈性調整，重點是維持穩定的讀書節奏。</p></details>
+        <details><summary>孩子自制力不好，來這裡有用嗎？</summary><p>這正是我們存在的原因。我們不是把孩子丟來自習，而是有老師管理、有紀律、有節奏地帶著讀，讓自制力還在養成的孩子也坐得住、讀得進去。</p></details>
+        <details><summary>輔導老師真的能幫忙嗎？</summary><p>現場的輔導老師多為醫學、牙醫、中醫等科系背景，這些都是一路讀上來、最懂怎麼念書的學長姐。孩子卡住隨時就能問。</p></details>
+        <details><summary>中午用餐怎麼辦？</summary><p>課程為 10:00–17:00，中午有休息時間，可自行用餐或外出購買，細節我們會在報名後再與您說明。</p></details>
+        <details><summary>名額有限制嗎？</summary><p>是的，為了維持良好的讀書氛圍與輔導品質，本梯次採限額制。建議盡早報名卡位，額滿即截止。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="container">
+      <h2 class="serif">這個暑假，<br>讓孩子悄悄超車。</h2>
+      <p>名額有限・先報名先卡位。</p>
+      <a href="#form" class="btn-primary">立即報名暑期讀考班</a>
+    </div>
+  </section>
+
+  <!-- LINE 浮動按鈕 -->
+  <a href="#" data-line target="_blank" class="line-float" aria-label="LINE 諮詢">
+    <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+    </svg>
+  </a>
+
   <!-- FOOTER -->
   <footer>
-    © 2026 VICTOR<sup>+</sup> 得勝者文教・國三升高一數學課程<br>
-    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
+    © 2026 VICTOR<sup>+</sup> 得勝者文教・暑期讀考班（升高二）<br>
+    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a>・台北市中山南路2巷5號（北車M8出口）</span>
   </footer>
 
   <script>
@@ -490,6 +649,85 @@
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
+
+    /* ── 站內錨點：平滑捲動（含固定選單偏移） ── */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('href');
+        if (id.length < 2) return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    /* ── LINE 連結 ──
+       等 GR 給官方 LINE 網址後，填到 LINE_URL；填了 data-line 按鈕就會自動指向它。
+       （目前留空，按下會提示先來電，避免連到錯誤帳號） */
+    const LINE_URL = 'https://lin.ee/V4ME1j6';
+    document.querySelectorAll('[data-line]').forEach(el => {
+      if (LINE_URL) {
+        el.setAttribute('href', LINE_URL);
+      } else {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          alert('LINE 諮詢連結尚未設定，請先來電：02-2314-5818。');
+        });
+      }
+    });
+
+    /* ── 價值卡：預設只顯示標題＋標籤，點擊才展開說明 ── */
+    document.querySelectorAll('.value-card').forEach(card => {
+      const tag = card.querySelector('.value-card-tag');
+      const hint = document.createElement('button');
+      hint.type = 'button';
+      hint.className = 'value-hint';
+      hint.textContent = '+';
+      hint.setAttribute('aria-label', '展開說明');
+      card.insertBefore(hint, tag);
+      card.addEventListener('click', () => {
+        const open = card.classList.toggle('open');
+        hint.textContent = open ? '−' : '+';
+        hint.setAttribute('aria-label', open ? '收合說明' : '展開說明');
+      });
+    });
+
+
+    /* ── 報名表單 → Google Sheet ──
+       1. 在 Google Sheet 建立 Apps Script（doPost），部署為「網頁應用程式」
+       2. 把部署後的網址貼到下面這行 GS_ENDPOINT（目前留空，會走來電提示） */
+    const GS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxMdL60Lbo6rRTDi3nwSEn3wSJuKMFPxum29VY5AiTcZd_1LXR1AyzW2_P2pzDGaBZR/exec';
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!GS_ENDPOINT) {
+          alert('表單尚未接上資料庫，請先來電報名：02-2314-5818，或設定 GS_ENDPOINT。');
+          return;
+        }
+        const btn = signupForm.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = '送出中…';
+        try {
+          const params = new URLSearchParams(new FormData(signupForm));
+          await fetch(GS_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString()
+          });
+          signupForm.style.display = 'none';
+          document.getElementById('signupSuccess').style.display = 'block';
+          document.getElementById('signupSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = original;
+          alert('送出失敗，請稍後再試，或直接來電報名：02-2314-5818。');
+        }
+      });
+    }
   </script>
 
 </body>
