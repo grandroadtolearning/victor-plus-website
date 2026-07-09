@@ -368,6 +368,44 @@
       margin-bottom: 28px; flex: 1;
     }
 
+    /* ── LINE CTA ── */
+    .line-cta {
+      max-width: 900px; width: 100%;
+      margin: 40px auto 0;
+      background: rgba(6,199,85,.08);
+      border: 1.5px solid rgba(6,199,85,.25);
+      border-radius: var(--r-lg);
+      padding: 24px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .line-cta-text {
+      font-size: 15px; font-weight: 700; color: #fff;
+    }
+    .line-cta-sub {
+      font-size: 13px; color: rgba(255,255,255,.5); margin-top: 2px; font-weight: 500;
+    }
+    .btn-line {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #06C755; color: #fff; font-weight: 700; font-size: 14px;
+      padding: 11px 24px; border-radius: 100px; text-decoration: none;
+      transition: background .2s, transform .2s; flex-shrink: 0;
+    }
+    .btn-line:hover { background: #05a847; transform: translateY(-1px); }
+    .btn-line svg { flex-shrink: 0; }
+
+    /* ── LINE 浮動按鈕 ── */
+    .line-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #06C755;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,199,85,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
+
     /* ── FOOTER ── */
     footer {
       background: #0f0509;
@@ -401,6 +439,8 @@
       .card-teacher { padding: 28px 24px 32px; }
       .card-dushu { flex-direction: column; padding: 30px 24px 34px; }
       .card-dushu-right { flex-direction: row; align-items: baseline; gap: 12px; }
+      .line-cta { flex-direction: column; align-items: flex-start; padding: 20px 22px; }
+      .btn-line { width: 100%; justify-content: center; }
       footer { padding: 28px 20px; }
     }
   </style>
@@ -572,7 +612,28 @@
       </a>
 
     </div>
+
+    <!-- LINE CTA -->
+    <div class="line-cta">
+      <div>
+        <div class="line-cta-text">還沒決定要選哪個班？</div>
+        <div class="line-cta-sub">想了解各科班級、老師怎麼選，加 LINE 直接問我們</div>
+      </div>
+      <a href="https://lin.ee/xpctTB9" target="_blank" class="btn-line">
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none">
+          <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+        </svg>
+        加 LINE 諮詢
+      </a>
+    </div>
   </div>
+
+  <!-- LINE 浮動按鈕 -->
+  <a href="https://lin.ee/xpctTB9" target="_blank" class="line-float" aria-label="LINE 諮詢">
+    <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+    </svg>
+  </a>
 
   <!-- FOOTER -->
   <footer>
