@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>金刀老師｜高中化學・得勝者文教</title>
+  <meta name="description" content="前師大附中科學班導師・師鐸獎得主・33年教學經驗。金刀老師讓學生真的懂化學、愛化學。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand: #7B2252;
+      --brand-dark: #4A1133;
+      --brand-light: #f3e8f0;
+      --gold: #C9A84C;
+      --gold-light: #e8d49a;
+      --ink: #1a1a1a;
+      --ink-2: #444;
+      --ink-3: #888;
+      --bg: #ffffff;
+      --dark: #0f0509;
+      --r: 14px;
+      --r-lg: 24px;
+      --shadow: 0 8px 32px rgba(123,34,82,.12);
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: #fff;
+      color: var(--ink);
+      overflow-x: hidden;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* ── 手機專屬斷行 helper ── */
+    .br-m { display: none; }
+    @media (max-width: 760px) { .br-m { display: inline; } }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(15,5,9,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: padding .3s ease, box-shadow .3s ease;
+    }
+    nav.scrolled { padding: 12px 40px; box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 700; color: #fff; text-decoration: none;
+    }
+    .v-badge {
+      background: var(--brand); color: #fff;
+      font-size: 11px; font-weight: 900; letter-spacing: .05em;
+      padding: 3px 7px; border-radius: 6px;
+    }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; color: rgba(255,255,255,.65); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-cta {
+      background: var(--brand); color: #fff;
+      font-size: 13px; font-weight: 700;
+      padding: 8px 20px; border-radius: 100px;
+      text-decoration: none; transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--brand-dark); }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0f0509 0%, #2a0d1e 60%, #1a0a14 100%);
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 80px 80px;
+      gap: 60px;
+    }
+    .hero-content { color: #fff; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.35);
+      color: var(--gold); font-size: 12px; font-weight: 700;
+      padding: 6px 16px; border-radius: 100px;
+      letter-spacing: .06em; margin-bottom: 28px;
+      max-width: 100%;
+    }
+    .hero-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(52px, 7vw, 80px); font-weight: 900;
+      color: #fff; line-height: 1.1; margin-bottom: 8px;
+      letter-spacing: -.02em;
+    }
+    .hero-subject {
+      font-size: 16px; font-weight: 700; color: var(--gold);
+      margin-bottom: 24px; letter-spacing: .04em;
+    }
+    .hero-tagline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(20px, 2.5vw, 28px); font-weight: 700;
+      color: rgba(255,255,255,.9); line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .hero-tagline span { color: var(--gold); }
+    .hero-sub {
+      font-size: 15px; color: rgba(255,255,255,.55);
+      line-height: 1.8; margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: #3a2600;
+      font-size: 15px; font-weight: 900;
+      padding: 13px 28px; border-radius: 100px;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 24px rgba(201,168,76,.25);
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,.35); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,.8);
+      font-size: 15px; font-weight: 700;
+      padding: 13px 28px; border-radius: 100px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,.25);
+      transition: border-color .2s, color .2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
+    .hero-photo-wrap {
+      display: flex; align-items: flex-end; justify-content: center;
+      height: 100%;
+    }
+    .hero-photo {
+      width: 100%; max-width: 420px; height: 500px;
+      border-radius: var(--r-lg);
+      object-fit: cover; object-position: center 65%;
+      filter: drop-shadow(0 20px 60px rgba(123,34,82,.5));
+    }
+    .hero-photo-placeholder {
+      width: 100%; max-width: 420px; height: 520px;
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.25); font-size: 13px;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; text-align: center; gap: 40px; }
+      .hero-photo-wrap { order: -1; }
+      .hero-photo { height: 320px; }
+      .hero-ctas { justify-content: center; }
+    }
+
+    /* ── PAIN ── */
+    .pain {
+      padding: 100px 40px;
+      background: #fff;
+    }
+    .pain-inner { max-width: 680px; margin: 0 auto; }
+    .sec-eyebrow {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 14px;
+    }
+    .sec-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(26px, 3.5vw, 38px); font-weight: 900;
+      color: var(--ink); line-height: 1.25; margin-bottom: 32px;
+      text-wrap: balance; word-break: keep-all;
+    }
+    .sec-title .hl { color: var(--brand); }
+    .pain-body {
+      font-size: 17px; color: var(--ink-2); line-height: 1.9;
+      margin-bottom: 36px; text-wrap: pretty;
+    }
+    .pain-body p + p { margin-top: 18px; }
+    /* 長段內文：自動填滿寬度，不逐句手刻 */
+    .pain-body p { word-break: normal; line-break: strict; }
+    .pain-quote {
+      border-left: 3px solid var(--brand);
+      padding-left: 20px;
+      font-style: italic;
+      font-size: 17px; color: var(--ink-2); line-height: 1.8;
+      margin-top: 32px;
+      word-break: normal; line-break: strict;
+    }
+    .pain-quote strong { color: var(--brand-dark); font-style: normal; }
+
+    /* ── GUIDE ── */
+    .guide {
+      background: var(--dark);
+      padding: 100px 0 120px;
+      overflow-x: hidden;
+    }
+    .guide-header { padding: 0 80px; margin-bottom: 64px; }
+    .guide-header .sec-eyebrow { color: var(--gold); }
+    .guide-header .sec-title { color: #fff; }
+    .guide-header .sec-title .hl { color: var(--gold); }
+    .guide-body {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      align-items: start;
+      padding: 0 80px;
+      gap: 64px;
+    }
+    /* LEFT */
+    .guide-left {
+      position: sticky; top: 100px; min-width: 0;
+    }
+    .guide-teacher-img {
+      width: 100%; border-radius: var(--r-lg);
+      object-fit: cover;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      margin-bottom: 28px;
+    }
+    .guide-teacher-placeholder {
+      width: 100%; height: 380px;
+      border-radius: var(--r-lg);
+      background: rgba(255,255,255,.04);
+      border: 1px dashed rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.2); font-size: 13px;
+      margin-bottom: 28px;
+    }
+    .guide-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 36px; font-weight: 900; color: #fff;
+      margin-bottom: 10px;
+    }
+    .guide-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .gbadge {
+      background: var(--gold); color: #3a2600;
+      font-size: 11px; font-weight: 900;
+      padding: 4px 12px; border-radius: 100px;
+      letter-spacing: .04em;
+    }
+    .gbadge.outline {
+      background: transparent; color: var(--gold);
+      border: 1px solid rgba(201,168,76,.4);
+    }
+    .guide-quote {
+      font-size: 15px; color: rgba(255,255,255,.55);
+      line-height: 1.8; font-style: italic;
+      border-left: 2px solid rgba(201,168,76,.4);
+      padding-left: 16px; margin-top: 4px;
+      word-break: normal; line-break: strict;
+    }
+
+    /* RIGHT */
+    .guide-right { padding: 8px 0; min-width: 0; }
+    .accord-list-wrap { position: relative; }
+    .accord-list { list-style: none; border-top: 1px solid rgba(255,255,255,.08); }
+    .accord-item { border-bottom: 1px solid rgba(255,255,255,.08); }
+    .accord-head {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 0; gap: 16px; text-align: left;
+    }
+    .accord-label {
+      font-size: 17px; font-weight: 700; color: rgba(255,255,255,.75);
+      transition: color .2s; line-height: 1.4;
+      flex: 1; min-width: 0;
+      word-break: normal; line-break: strict;
+    }
+    .accord-head.active .accord-label { color: #fff; }
+    .accord-arrow {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,.06); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 18px; transition: transform .3s, background .2s;
+    }
+    .accord-head.active .accord-arrow { transform: rotate(45deg); background: rgba(201,168,76,.15); }
+    .accord-body {
+      display: none;
+      padding: 0 0 24px;
+      font-size: 15px; color: rgba(255,255,255,.6); line-height: 1.9;
+      text-wrap: pretty;
+      word-break: normal; line-break: strict;
+    }
+    .accord-item.open .accord-body { display: block; }
+
+    /* guide mobile */
+    @media (max-width: 768px) {
+      .guide { padding: 72px 0 80px; }
+      .guide-header { padding: 0 20px; margin-bottom: 40px; }
+      .guide-body {
+        grid-template-columns: 1fr;
+        padding: 0 16px 60px;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        gap: 32px;
+      }
+      .guide-left {
+        position: static; flex: none;
+        width: 100%; overflow: hidden; padding: 0;
+      }
+      .guide-right {
+        position: static; order: -1;
+        width: 100%; max-width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .accord-list {
+        display: flex; overflow-x: auto; gap: 8px;
+        border-top: none; scrollbar-width: none;
+        padding: 4px 0 12px; margin: 12px 0 0;
+      }
+      .accord-list::-webkit-scrollbar { display: none; }
+      .accord-item { flex-shrink: 0; border-bottom: none; }
+      .accord-head {
+        background: var(--brand-light);
+        border: 1.5px solid rgba(123,34,82,.2);
+        border-radius: 100px;
+        padding: 7px 16px;
+        font-size: 13px; cursor: pointer;
+        white-space: nowrap; display: block; width: auto;
+      }
+      .accord-head.active {
+        background: var(--brand); color: #fff;
+        border-color: var(--brand);
+      }
+      .accord-head .accord-label { font-size: 13px; color: var(--brand); }
+      .accord-head.active .accord-label { color: #fff; }
+      .accord-arrow { display: none; }
+      .accord-body { display: none !important; }
+    }
+
+    .guide-mobile-desc {
+      display: none;
+      background: rgba(255,255,255,.05); border-radius: 16px;
+      padding: 16px 20px; margin: 12px 0 0;
+      min-height: 72px; font-size: 14px;
+      color: rgba(255,255,255,.6); line-height: 1.9;
+    }
+    .guide-mobile-desc strong {
+      display: block; font-size: 11px; font-weight: 700;
+      color: var(--gold); margin-bottom: 6px;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    @media (max-width: 768px) {
+      .guide-mobile-desc { display: block; }
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial {
+      padding: 80px 40px;
+      background: var(--brand-light);
+    }
+    .testimonial-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .testimonial blockquote {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(22px, 3vw, 32px); font-weight: 900;
+      color: var(--brand-dark); line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .testimonial blockquote::before { content: "❝ "; color: var(--brand); }
+    .testimonial blockquote::after { content: " ❞"; color: var(--brand); }
+    .testimonial cite { font-size: 14px; color: var(--ink-3); font-style: normal; }
+
+    /* ── VALUE ── */
+    .value {
+      padding: 100px 80px;
+      background: #fff;
+    }
+    .value-header { text-align: center; margin-bottom: 56px; }
+    .value-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .value-card {
+      background: var(--brand-light);
+      border-radius: var(--r-lg);
+      padding: 40px 28px;
+      border: 1.5px solid rgba(123,34,82,.1);
+      transition: transform .3s ease, box-shadow .3s ease;
+      min-width: 0; /* 元凶4：grid子項防撐出 */
+    }
+    .value-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .value-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+    .value-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 20px; font-weight: 900; color: var(--ink);
+      margin-bottom: 14px; line-height: 1.35;
+    }
+    .value-desc { font-size: 15px; color: var(--ink-2); line-height: 1.8; word-break: normal; line-break: strict; }
+
+    @media (max-width: 768px) {
+      .value { padding: 72px 20px; }
+      .value-grid {
+        display: flex; overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 12px; padding-bottom: 16px;
+        scrollbar-width: none;
+      }
+      .value-grid::-webkit-scrollbar { display: none; }
+      .value-card {
+        flex: 0 0 85vw;
+        scroll-snap-align: start;
+      }
+    }
+
+    /* ── SIGNUP ── */
+    .signup {
+      background: var(--brand-dark);
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .signup h2 {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 900;
+      color: #fff; line-height: 1.3; margin-bottom: 16px;
+    }
+    .signup h2 .hl { color: var(--gold); }
+    .signup p { font-size: 17px; color: rgba(255,255,255,.6); margin-bottom: 36px; line-height: 1.7; word-break: normal; line-break: strict; }
+    .signup-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .signup { padding: 72px 24px; }
+    }
+
+    /* ── LINE FLOAT ── */
+    .line-float {
+      position: fixed; bottom: 28px; right: 24px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #06C755;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(6,199,85,.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .line-float:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(6,199,85,.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0509; color: rgba(255,255,255,.35);
+      padding: 32px 40px; text-align: center; font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer a { color: rgba(255,255,255,.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="topNav">
+    <a class="nav-logo" href="index.html">
+      <div class="v-badge">V+</div>
+      得勝者文教
+    </a>
+    <div class="nav-links">
+      <a href="chen.html">陳建州老師</a>
+      <a href="xie.html">解創智老師</a>
+      <a href="jindao.html" class="active">金刀老師</a>
+      <a href="apex.html">APEX 巔峰班</a>
+      <a href="trial.html">試聽活動</a>
+      <a href="dushu.html">暑期班</a>
+    </div>
+    <a class="nav-cta" href="trial.html">立即報名試聽</a>
+  </nav>
+
+  <!-- ① HERO -->
+  <section class="hero">
+    <div class="hero-content reveal">
+      <div class="hero-badge">🏆 師鐸獎得主・前師大附中科學班導師</div>
+      <h1 class="hero-name">金刀老師</h1>
+      <p class="hero-subject">高中化學・33 年教學經驗</p>
+      <p class="hero-tagline">
+        真的<span>懂</span>化學<br>不只是硬背
+      </p>
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);border-radius:12px;padding:12px 20px;margin-bottom:28px;">
+        <span style="font-size:20px;">📅</span>
+        <div>
+          <div style="font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.06em;margin-bottom:2px;">免費試聽</div>
+          <div style="font-size:15px;color:#fff;font-weight:700;">7/18（六）18:30–21:30<br class="br-m">・實體講座</div>
+        </div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#signup" class="btn-primary">立即報名試聽</a>
+        <a href="#guide" class="btn-ghost">認識金刀老師</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap reveal">
+      <img src="teacher-jindao-hiking.jpg" alt="金刀老師" class="hero-photo"
+           onerror="this.outerHTML='<div class=\'hero-photo-placeholder\'>老師照片</div>'" />
+    </div>
+  </section>
+
+  <!-- ② PAIN -->
+  <section class="pain">
+    <div class="pain-inner reveal">
+      <p class="sec-eyebrow">為什麼高中化學這麼難？</p>
+      <h2 class="sec-title">因為大部分的人，<br>沒有把<span class="hl">化學的邏輯</span>真正建起來。</h2>
+      <div class="pain-body">
+        <p>用背的，考題換一個細節就不會了；<br>真正理解，題目怎麼出都能應對。</p>
+        <p>108 課綱之後，這個差距更大！<br>素養考題不考你背了什麼，而是考你懂不懂。</p>
+      </div>
+      <div class="pain-quote">
+        <strong>「要真的懂不是硬背，才有能力能從容應付未來的挑戰。」</strong><br>
+        — 金刀老師
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ GUIDE -->
+  <section class="guide" id="guide">
+    <div class="guide-header reveal">
+      <p class="sec-eyebrow">金刀老師是誰</p>
+      <h2 class="sec-title">33 年，帶出真正<br class="br-m"><span class="hl">懂化學、愛化學</span>的學生。</h2>
+    </div>
+    <div class="guide-body">
+      <!-- LEFT -->
+      <div class="guide-left reveal">
+        <img src="teacher-jindao-2.png" alt="金刀老師" class="guide-teacher-img"
+             onerror="this.outerHTML='<div class=\'guide-teacher-placeholder\'>老師照片</div>'" />
+        <div class="guide-name">金刀（江青釗）</div>
+        <div class="guide-badges">
+          <span class="gbadge">化學</span>
+          <span class="gbadge outline">前師大附中科學班導師</span>
+          <span class="gbadge outline">師鐸獎得主</span>
+        </div>
+        <p class="guide-quote">「他們認為我訓練出來的學生，是真的懂化學、愛化學。」</p>
+      </div>
+      <!-- RIGHT -->
+      <div class="guide-right reveal">
+        <div class="accord-list-wrap">
+          <ul class="accord-list">
+            <li class="accord-item">
+              <button class="accord-head">
+                <span class="accord-label">循序漸進，建立真正的應考實力</span>
+                <span class="accord-arrow">+</span>
+              </button>
+              <div class="accord-body">
+                金刀老師不趕進度，不跳步驟。每一個化學概念都要確實建起來，才接下一個。這樣累積出來的，是從根基長出來的實力——而不是臨時抱佛腳、考完就忘的記憶。
+              </div>
+            </li>
+            <li class="accord-item">
+              <button class="accord-head">
+                <span class="accord-label">鉅細靡遺，讓學生真正透徹理解</span>
+                <span class="accord-arrow">+</span>
+              </button>
+              <div class="accord-body">
+                108 課綱素養考題，考的是「懂不懂」，不是「背沒背」。金刀老師的教學鉅細靡遺，每個細節都說清楚——讓學生真的理解背後的原理，而不只是記住答案。遇到沒見過的題型，才能從容應對。
+              </div>
+            </li>
+            <li class="accord-item">
+              <button class="accord-head">
+                <span class="accord-label">讓化學有畫面，抽象概念變具體</span>
+                <span class="accord-arrow">+</span>
+              </button>
+              <div class="accord-body">
+                金刀老師對每一個實驗原理的了解之深，讓他能把抽象的化學說得有畫面——學生在腦子裡就能看到反應在發生。<br>能看到的東西，才會真的懂，也才會記得住。
+              </div>
+            </li>
+            <li class="accord-item">
+              <button class="accord-head">
+                <span class="accord-label">提振學習鬥志，讓學生知道為什麼讀</span>
+                <span class="accord-arrow">+</span>
+              </button>
+              <div class="accord-body">
+                教學不只是把課程教完。金刀老師更在意的，是讓每一個學生知道自己的未來在哪裡。有了方向感，學習的鬥志才會持續——不是為了考試撐著，而是真的想繼續。
+              </div>
+            </li>
+          </ul>
+          <div class="guide-mobile-desc" id="guideMobileDesc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ TESTIMONIAL -->
+  <section class="testimonial reveal">
+    <div class="testimonial-inner">
+      <p class="sec-eyebrow" style="color:var(--brand);margin-bottom:20px;">學生的評價</p>
+      <blockquote>真的懂化學、愛化學</blockquote>
+      <cite>— 金刀老師的學生</cite>
+    </div>
+  </section>
+
+  <!-- ⑤ VALUE -->
+  <section class="value">
+    <div class="value-header reveal">
+      <p class="sec-eyebrow" style="color:var(--brand);">跟著金刀老師，你會得到</p>
+      <h2 class="sec-title">不只是化學成績，<br>是<span class="hl">真正帶得走的能力</span>。</h2>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <span class="value-icon">🔬</span>
+        <h3 class="value-title">真的懂，不是背</h3>
+        <p class="value-desc">懂原理的學生，遇到沒見過的題目還是能解。108 課綱之後，「背」的人被淘汰，「懂」的人從容應對——金刀老師教的，正是這個。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">⚗️</span>
+        <h3 class="value-title">從怕化學，到愛化學</h3>
+        <p class="value-desc">大多數學生怕化學、撐化學。金刀老師讓學生看到化學的有趣——不是靠死記，是靠真正理解每一個「為什麼」。</p>
+      </div>
+      <div class="value-card reveal">
+        <span class="value-icon">🧭</span>
+        <h3 class="value-title">讀書，知道為什麼</h3>
+        <p class="value-desc">有方向的學生才有鬥志。金刀老師讓學生看到自己的未來在哪裡——這比考試成績更重要。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ SIGNUP -->
+  <section class="signup reveal" id="signup">
+    <h2>開對頭，<span class="hl">三年不一樣</span>。</h2>
+    <p>
+      高一第一章，是化學的起點。<br>
+      跟金刀老師學，從第一堂課就建對邏輯。
+    </p>
+    <div style="display:inline-flex;align-items:center;gap:14px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px 28px;margin-bottom:32px;flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:left;">
+        <div style="font-size:11px;color:var(--gold-light);font-weight:700;letter-spacing:.08em;margin-bottom:4px;">📅 免費試聽場次</div>
+        <div style="font-size:20px;font-weight:900;color:#fff;">7/18（六）18:30–21:30</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.55);margin-top:2px;">實體講座・台北得勝者文教</div>
+      </div>
+    </div>
+    <div class="signup-ctas">
+      <a href="trial.html" class="btn-primary">立即報名</a>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:rgba(255,255,255,.35);">名額有限，報名從速</p>
+  </section>
+
+  <!-- LINE FLOAT -->
+  <a href="https://lin.ee/sUygaV8" target="_blank" class="line-float" aria-label="LINE 諮詢">
+    <svg width="28" height="28" viewBox="0 0 22 22" fill="none">
+      <path d="M11 2C6.03 2 2 5.63 2 10.1c0 3.97 3.52 7.3 8.28 7.93.32.07.76.21.87.49.1.25.07.64.03.9l-.14.85c-.04.25-.2 1 .87.54 1.08-.45 5.81-3.42 7.93-5.85C21.25 13.04 22 11.64 22 10.1 22 5.63 17.97 2 11 2z" fill="white"/>
+    </svg>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2026 VICTOR<sup>+</sup> 得勝者文教・金刀老師化學課<br>
+    <span style="font-size:11px;">洽詢專線 <a href="tel:0223145818">02-2314-5818</a> / <a href="tel:0223140668">02-2314-0668</a>・台北市中山南路2巷5號（捷運北車M8出口）</span>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('topNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Accordion（桌面版）
+    document.querySelectorAll('.accord-head').forEach(function(head) {
+      head.addEventListener('click', function() {
+        if (window.innerWidth <= 768) return;
+        const item = this.closest('.accord-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accord-item').forEach(i => i.classList.remove('open'));
+        document.querySelectorAll('.accord-head').forEach(h => h.classList.remove('active'));
+        if (!isOpen) {
+          item.classList.add('open');
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Pill chip → mobile desc card
+    document.querySelectorAll('.accord-head').forEach(function(head) {
+      head.addEventListener('click', function() {
+        if (window.innerWidth > 768) return;
+        const mobileDesc = document.getElementById('guideMobileDesc');
+        const item = this.closest('.accord-item');
+        const label = item.querySelector('.accord-label');
+        const bodyText = item.querySelector('.accord-body');
+        document.querySelectorAll('.accord-head').forEach(h => h.classList.remove('active'));
+        this.classList.add('active');
+        if (mobileDesc) {
+          mobileDesc.innerHTML =
+            (label ? '<strong>' + label.textContent + '</strong>' : '') +
+            (bodyText ? bodyText.textContent.trim() : '');
+        }
+      });
+    });
+
+    // 預設展開第一項
+    (function() {
+      const first = document.querySelector('.accord-item');
+      const firstHead = document.querySelector('.accord-head');
+      if (first && firstHead) {
+        first.classList.add('open');
+        firstHead.classList.add('active');
+        const mobileDesc = document.getElementById('guideMobileDesc');
+        if (mobileDesc) {
+          const label = first.querySelector('.accord-label');
+          const bodyText = first.querySelector('.accord-body');
+          mobileDesc.innerHTML =
+            (label ? '<strong>' + label.textContent + '</strong>' : '') +
+            (bodyText ? bodyText.textContent.trim() : '');
+        }
+      }
+    })();
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  </script>
+</body>
+</html>
