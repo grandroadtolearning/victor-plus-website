@@ -180,6 +180,73 @@
     .math-punch .hl { color: var(--gold); }
     .math-note { text-align:center; color: rgba(255,255,255,.4); font-size: 13px; margin-top: 14px; line-height:1.7; }
 
+    /* ── COMPARE：兩種暑假 ── */
+    .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .compare-col { border-radius: var(--r-lg); padding: 32px 26px; }
+    .compare-col.lose { background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08); }
+    .compare-col.win { background: rgba(201,168,76,.08); border: 1.5px solid rgba(201,168,76,.45); }
+    .compare-label {
+      display: inline-block; font-size: 13px; font-weight: 900; letter-spacing: .04em;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 18px;
+    }
+    .compare-col.lose .compare-label { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); }
+    .compare-col.win .compare-label { background: var(--gold); color: #3a2600; }
+    .compare-scene {
+      font-family: 'Noto Serif TC', serif; font-size: 17px; font-weight: 900;
+      color: rgba(255,255,255,.75); line-height: 1.6; margin-bottom: 18px;
+    }
+    .compare-col.win .compare-scene { color: #fff; }
+    .compare-list { list-style: none; display: grid; gap: 10px; }
+    .compare-list li { font-size: 15px; color: rgba(255,255,255,.5); line-height: 1.6; padding-left: 22px; position: relative; }
+    .compare-col.win .compare-list li { color: rgba(255,255,255,.85); }
+    .compare-list li::before { content: "—"; position: absolute; left: 0; color: rgba(255,255,255,.25); }
+    .compare-col.win .compare-list li::before { content: "✓"; color: var(--gold); font-weight: 900; }
+    .compare-punch {
+      margin-top: 32px; text-align: center;
+      font-family: 'Noto Serif TC', serif; font-size: clamp(19px,2.6vw,24px); font-weight: 900;
+      color: #fff; line-height: 1.6;
+    }
+    .compare-punch .hl { color: var(--gold); }
+    .compare-note {
+      text-align: center; color: rgba(255,255,255,.55); font-size: 16px;
+      line-height: 1.8; max-width: 560px; margin: 18px auto 0;
+    }
+    .compare-note b { color: var(--gold-light); }
+
+    /* ── SCHEDULE：示範作息 ── */
+    .schedule {
+      margin-top: 28px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--r-lg); padding: 32px 34px;
+    }
+    .schedule-label {
+      text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 22px;
+    }
+    .schedule-list { display: grid; gap: 0; }
+    .s-item {
+      display: grid; grid-template-columns: 130px 1fr; gap: 18px;
+      padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.06); align-items: baseline;
+    }
+    .s-item:last-child { border-bottom: none; }
+    .s-time { font-family: 'Noto Serif TC', serif; font-weight: 900; color: var(--gold); font-size: 16px; white-space: nowrap; }
+    .s-desc { color: rgba(255,255,255,.85); font-size: 15px; line-height: 1.6; }
+
+    /* ── SCHEDULE 嵌入 compare-col 時的縮小版 ── */
+    .schedule-label-inline { text-align: left; margin: 18px 0 12px; font-size: 12px; }
+    .compare-col.lose .schedule-label-inline { color: rgba(255,255,255,.4); }
+    .schedule-list-compact .s-item { grid-template-columns: 100px 1fr; gap: 12px; padding: 10px 0; }
+    .schedule-list-compact .s-time { font-size: 14px; }
+    .schedule-list-compact .s-desc { font-size: 14px; color: rgba(255,255,255,.5); }
+    .compare-col.win .schedule-list-compact .s-desc { color: rgba(255,255,255,.85); }
+    .compare-col.lose .schedule-list-compact .s-item,
+    .compare-col.win .schedule-list-compact .s-item { border-bottom: 1px solid rgba(255,255,255,.06); }
+    .compare-col.win .schedule-list-compact .s-item { border-bottom-color: rgba(201,168,76,.15); }
+
+    @media (max-width: 760px) {
+      .compare-wrap { grid-template-columns: 1fr; }
+      .schedule-list-compact .s-item { grid-template-columns: 88px 1fr; gap: 10px; }
+    }
+
     /* ── PAIN Q-CARDS ── */
     .qgrid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
     @media (min-width: 761px) {
@@ -471,6 +538,42 @@
         ＊以上為一般情況的概算，實際時數依個人專注程度與出席狀況而定。<br>
         無論孩子是想超前、還是想把上學期落後的進度補回來——這個暑假，都是最好的時機。
       </p>
+    </div>
+  </section>
+
+  <!-- COMPARE：兩種暑假 -->
+  <section id="compare">
+    <div class="container">
+      <p class="sec-eyebrow">同樣是暑假，過法差在哪</p>
+      <h2 class="sec-title">兩種暑假，<span class="hl">兩種開學</span>。</h2>
+      <div class="compare-wrap">
+        <div class="compare-col lose">
+          <span class="compare-label">沒有來</span>
+          <p class="compare-scene">太陽曬到中午，窗簾都還沒拉開。</p>
+          <p class="schedule-label schedule-label-inline">可能作息</p>
+          <div class="schedule-list schedule-list-compact">
+            <div class="s-item"><span class="s-time">12:00</span><span class="s-desc">睡到自然醒，才起床</span></div>
+            <div class="s-item"><span class="s-time">12:00–14:00</span><span class="s-desc">吃飯，配劇</span></div>
+            <div class="s-item"><span class="s-time">14:00–17:00</span><span class="s-desc">手遊打到忘記時間</span></div>
+            <div class="s-item"><span class="s-time">17:00</span><span class="s-desc">一天過完後，書... 一頁沒翻</span></div>
+          </div>
+        </div>
+        <div class="compare-col win">
+          <span class="compare-label">在這裡</span>
+          <p class="compare-scene">10:00，準時坐下，開始讀。</p>
+          <p class="schedule-label schedule-label-inline">示範作息</p>
+          <div class="schedule-list schedule-list-compact">
+            <div class="s-item"><span class="s-time">10:00–12:00</span><span class="s-desc">數學</span></div>
+            <div class="s-item"><span class="s-time">12:00–13:00</span><span class="s-desc">午餐</span></div>
+            <div class="s-item"><span class="s-time">13:00–13:50</span><span class="s-desc">午休</span></div>
+            <div class="s-item"><span class="s-time">14:00–15:20</span><span class="s-desc">國文</span></div>
+            <div class="s-item"><span class="s-time">15:40–17:00</span><span class="s-desc">自-物理／社-歷史</span></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="compare-punch">同一個暑假，過成兩種人生。<br class="br-m"><span class="hl">開學那天，差距就揭曉。</span></p>
+      <p class="compare-note">改變的，不是他多會了什麼——是他從此<b>開始，養成規律讀書的習慣</b>。</p>
     </div>
   </section>
 
